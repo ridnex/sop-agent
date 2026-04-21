@@ -28,17 +28,24 @@ def _build_execution_summary(execution_log: dict) -> str:
 
 
 def _find_final_screenshot(execution_log: dict, execution_dir: Path) -> Path | None:
-    """Find the last screenshot from the execution."""
+    """Find the last real screenshot from the execution.
+
+    Walks backward through steps so that, if the final few screenshots failed
+    (empty screenshot_path -> Path("") -> current dir), we still return the
+    most recent actually-captured PNG. Falls back to the execution_screenshots
+    directory listing if no step has a usable path.
+    """
     steps = execution_log.get("steps", [])
-    if not steps:
-        return None
-    last_step = steps[-1]
-    screenshot_path = Path(last_step.get("screenshot_path", ""))
-    if screenshot_path.exists():
-        return screenshot_path
-    # Try relative to execution dir
+    for step in reversed(steps):
+        raw = step.get("screenshot_path") or ""
+        if not raw:
+            continue
+        p = Path(raw)
+        if p.is_file():
+            return p
+    # Fallback: any PNG in the execution_screenshots dir
     screenshots_dir = execution_dir / "execution_screenshots"
-    if screenshots_dir.exists():
+    if screenshots_dir.is_dir():
         pngs = sorted(screenshots_dir.glob("*.png"))
         if pngs:
             return pngs[-1]

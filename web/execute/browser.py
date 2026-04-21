@@ -113,8 +113,7 @@ class BrowserController:
         # Open a new tab in existing window
         self._page = self._context.new_page()
 
-        if start_url and start_url != "about:blank":
-            self._page.goto(start_url, wait_until="domcontentloaded")
+        self._safe_initial_goto(start_url)
 
         self._page_count = len(self._context.pages)
         self._context.on("page", self._on_new_page)
@@ -140,8 +139,7 @@ class BrowserController:
         # Always start with a fresh page
         self._page = self._context.new_page()
 
-        if start_url and start_url != "about:blank":
-            self._page.goto(start_url, wait_until="domcontentloaded")
+        self._safe_initial_goto(start_url)
 
         self._page_count = len(self._context.pages)
         self._context.on("page", self._on_new_page)
@@ -166,6 +164,25 @@ class BrowserController:
             if self._playwright:
                 self._playwright.stop()
             logger.info("Disconnected from Chrome (window stays open)")
+
+    def _safe_initial_goto(self, start_url: str) -> None:
+        """Best-effort initial navigation.
+
+        The previous implementation waited up to 30s for `domcontentloaded` and
+        crashed the whole worker when heavy pages (Gmail redirects, SSO prompts)
+        did not fire that event in time. The SOP's step 1 already contains the
+        navigation instruction and Claude handles it via ctrl+l, so if this
+        fails we warn and move on instead of aborting.
+        """
+        if not start_url or start_url == "about:blank":
+            return
+        try:
+            self._page.goto(start_url, wait_until="commit", timeout=10000)
+        except Exception as e:
+            logger.warning(
+                f"Initial goto({start_url}) failed: {e}. "
+                f"Continuing — the SOP's first step should handle navigation."
+            )
 
     def _on_new_page(self, page: Page) -> None:
         """Playwright event: a new tab or popup opened. Switch immediately."""
@@ -232,16 +249,29 @@ class BrowserController:
 
     # --- Actions matching Claude Computer Use tool ---
 
+    def _capture_png(self) -> bytes:
+        """Take a screenshot with a short timeout, falling back to a no-wait capture.
+
+        A page that is still loading heavy content can make the default 30s
+        screenshot timeout hit. We try a fast capture first; if that stalls we
+        retry with a minimal-wait path that snapshots whatever is rendered.
+        """
+        try:
+            return self.page.screenshot(type="png", timeout=10000)
+        except Exception as e:
+            logger.warning(f"Screenshot stalled ({e}); retrying with animations disabled.")
+            return self.page.screenshot(type="png", timeout=10000, animations="disabled", caret="hide")
+
     def screenshot(self) -> str:
         """Capture screenshot, return base64 PNG string."""
         self._check_for_new_tab()
-        png_bytes = self.page.screenshot(type="png")
+        png_bytes = self._capture_png()
         return base64.standard_b64encode(png_bytes).decode("utf-8")
 
     def screenshot_to_file(self, path: str) -> str:
         """Capture screenshot, save to file, return base64 PNG string."""
         self._check_for_new_tab()
-        png_bytes = self.page.screenshot(type="png")
+        png_bytes = self._capture_png()
         Path(path).parent.mkdir(parents=True, exist_ok=True)
         with open(path, "wb") as f:
             f.write(png_bytes)
@@ -279,7 +309,14 @@ class BrowserController:
             if not url.startswith(("http://", "https://")):
                 url = "https://" + url
             logger.info(f"Nav mode: navigating to {url}")
-            self.page.goto(url, wait_until="domcontentloaded")
+            # Use `commit` (URL change) with a short timeout rather than
+            # `domcontentloaded` (30s) — heavy pages like Gmail/SSO redirect
+            # chains rarely fire domcontentloaded cleanly and a stalled initial
+            # navigation poisons every subsequent screenshot.
+            try:
+                self.page.goto(url, wait_until="commit", timeout=10000)
+            except Exception as e:
+                logger.warning(f"Nav-mode goto({url}) did not commit cleanly: {e}")
             return
         self.page.keyboard.insert_text(text)
 
