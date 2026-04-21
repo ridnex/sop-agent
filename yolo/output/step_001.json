@@ -1,0 +1,1721 @@
+{
+  "image": "input/step_001.png",
+  "resolution": {
+    "width": 3440,
+    "height": 1440
+  },
+  "elements": [
+    {
+      "id": 1,
+      "class": "button",
+      "confidence": 0.8409,
+      "bbox": [
+        80,
+        357,
+        311,
+        390
+      ],
+      "center": [
+        195,
+        373
+      ],
+      "label": "Snoozed"
+    },
+    {
+      "id": 2,
+      "class": "input_field",
+      "confidence": 0.824,
+      "bbox": [
+        75,
+        422,
+        308,
+        454
+      ],
+      "center": [
+        191,
+        438
+      ],
+      "label": "Drafts"
+    },
+    {
+      "id": 3,
+      "class": "icon",
+      "confidence": 0.8196,
+      "bbox": [
+        1265,
+        1358,
+        1332,
+        1422
+      ],
+      "center": [
+        1298,
+        1390
+      ],
+      "label": ""
+    },
+    {
+      "id": 4,
+      "class": "input_field",
+      "confidence": 0.8126,
+      "bbox": [
+        79,
+        324,
+        312,
+        359
+      ],
+      "center": [
+        195,
+        341
+      ],
+      "label": "Starred"
+    },
+    {
+      "id": 5,
+      "class": "icon",
+      "confidence": 0.8072,
+      "bbox": [
+        1334,
+        1358,
+        1401,
+        1424
+      ],
+      "center": [
+        1367,
+        1391
+      ],
+      "label": ""
+    },
+    {
+      "id": 6,
+      "class": "checkbox",
+      "confidence": 0.807,
+      "bbox": [
+        3261,
+        624,
+        3300,
+        661
+      ],
+      "center": [
+        3280,
+        642
+      ],
+      "label": ""
+    },
+    {
+      "id": 7,
+      "class": "icon",
+      "confidence": 0.8043,
+      "bbox": [
+        1405,
+        1360,
+        1471,
+        1424
+      ],
+      "center": [
+        1438,
+        1392
+      ],
+      "label": ""
+    },
+    {
+      "id": 8,
+      "class": "icon",
+      "confidence": 0.7964,
+      "bbox": [
+        1789,
+        1359,
+        1858,
+        1425
+      ],
+      "center": [
+        1823,
+        1392
+      ],
+      "label": ""
+    },
+    {
+      "id": 9,
+      "class": "icon",
+      "confidence": 0.7953,
+      "bbox": [
+        1190,
+        1358,
+        1260,
+        1422
+      ],
+      "center": [
+        1225,
+        1390
+      ],
+      "label": ""
+    },
+    {
+      "id": 10,
+      "class": "input_field",
+      "confidence": 0.792,
+      "bbox": [
+        77,
+        389,
+        310,
+        423
+      ],
+      "center": [
+        193,
+        406
+      ],
+      "label": "Sent"
+    },
+    {
+      "id": 11,
+      "class": "icon",
+      "confidence": 0.7915,
+      "bbox": [
+        1477,
+        1359,
+        1542,
+        1422
+      ],
+      "center": [
+        1509,
+        1390
+      ],
+      "label": ""
+    },
+    {
+      "id": 12,
+      "class": "icon",
+      "confidence": 0.7893,
+      "bbox": [
+        1549,
+        1359,
+        1614,
+        1423
+      ],
+      "center": [
+        1581,
+        1391
+      ],
+      "label": ""
+    },
+    {
+      "id": 13,
+      "class": "icon",
+      "confidence": 0.7892,
+      "bbox": [
+        1685,
+        1359,
+        1758,
+        1424
+      ],
+      "center": [
+        1721,
+        1391
+      ],
+      "label": ""
+    },
+    {
+      "id": 14,
+      "class": "input_field",
+      "confidence": 0.7824,
+      "bbox": [
+        76,
+        292,
+        313,
+        326
+      ],
+      "center": [
+        194,
+        309
+      ],
+      "label": "Inbox"
+    },
+    {
+      "id": 15,
+      "class": "button",
+      "confidence": 0.7801,
+      "bbox": [
+        81,
+        453,
+        308,
+        486
+      ],
+      "center": [
+        194,
+        469
+      ],
+      "label": "Categories"
+    },
+    {
+      "id": 16,
+      "class": "input_field",
+      "confidence": 0.7794,
+      "bbox": [
+        78,
+        487,
+        307,
+        520
+      ],
+      "center": [
+        192,
+        503
+      ],
+      "label": "More"
+    },
+    {
+      "id": 17,
+      "class": "dropdown",
+      "confidence": 0.7789,
+      "bbox": [
+        2983,
+        157,
+        3093,
+        207
+      ],
+      "center": [
+        3038,
+        182
+      ],
+      "label": "Active"
+    },
+    {
+      "id": 18,
+      "class": "icon",
+      "confidence": 0.7739,
+      "bbox": [
+        1619,
+        1358,
+        1684,
+        1424
+      ],
+      "center": [
+        1651,
+        1391
+      ],
+      "label": "NJ"
+    },
+    {
+      "id": 19,
+      "class": "icon",
+      "confidence": 0.7723,
+      "bbox": [
+        1119,
+        1360,
+        1188,
+        1422
+      ],
+      "center": [
+        1153,
+        1391
+      ],
+      "label": ""
+    },
+    {
+      "id": 20,
+      "class": "icon",
+      "confidence": 0.7713,
+      "bbox": [
+        3283,
+        158,
+        3375,
+        207
+      ],
+      "center": [
+        3329,
+        182
+      ],
+      "label": ""
+    },
+    {
+      "id": 21,
+      "class": "icon",
+      "confidence": 0.7616,
+      "bbox": [
+        1865,
+        1357,
+        1929,
+        1424
+      ],
+      "center": [
+        1897,
+        1390
+      ],
+      "label": ""
+    },
+    {
+      "id": 22,
+      "class": "icon",
+      "confidence": 0.746,
+      "bbox": [
+        631,
+        113,
+        690,
+        144
+      ],
+      "center": [
+        660,
+        128
+      ],
+      "label": "slack"
+    },
+    {
+      "id": 23,
+      "class": "icon",
+      "confidence": 0.7456,
+      "bbox": [
+        1930,
+        1358,
+        2009,
+        1427
+      ],
+      "center": [
+        1969,
+        1392
+      ],
+      "label": ""
+    },
+    {
+      "id": 24,
+      "class": "checkbox",
+      "confidence": 0.7421,
+      "bbox": [
+        3192,
+        164,
+        3222,
+        202
+      ],
+      "center": [
+        3207,
+        183
+      ],
+      "label": ""
+    },
+    {
+      "id": 25,
+      "class": "icon",
+      "confidence": 0.7378,
+      "bbox": [
+        3377,
+        159,
+        3425,
+        208
+      ],
+      "center": [
+        3401,
+        183
+      ],
+      "label": ""
+    },
+    {
+      "id": 26,
+      "class": "checkbox",
+      "confidence": 0.734,
+      "bbox": [
+        3262,
+        584,
+        3298,
+        621
+      ],
+      "center": [
+        3280,
+        602
+      ],
+      "label": ""
+    },
+    {
+      "id": 27,
+      "class": "checkbox",
+      "confidence": 0.7331,
+      "bbox": [
+        3149,
+        163,
+        3181,
+        202
+      ],
+      "center": [
+        3165,
+        182
+      ],
+      "label": ""
+    },
+    {
+      "id": 28,
+      "class": "icon",
+      "confidence": 0.728,
+      "bbox": [
+        3106,
+        162,
+        3139,
+        203
+      ],
+      "center": [
+        3122,
+        182
+      ],
+      "label": ""
+    },
+    {
+      "id": 29,
+      "class": "icon",
+      "confidence": 0.7225,
+      "bbox": [
+        1,
+        28,
+        84,
+        68
+      ],
+      "center": [
+        42,
+        48
+      ],
+      "label": ""
+    },
+    {
+      "id": 30,
+      "class": "icon",
+      "confidence": 0.7184,
+      "bbox": [
+        3391,
+        392,
+        3438,
+        432
+      ],
+      "center": [
+        3414,
+        412
+      ],
+      "label": ""
+    },
+    {
+      "id": 31,
+      "class": "checkbox",
+      "confidence": 0.7167,
+      "bbox": [
+        3393,
+        224,
+        3432,
+        260
+      ],
+      "center": [
+        3412,
+        242
+      ],
+      "label": ""
+    },
+    {
+      "id": 32,
+      "class": "button",
+      "confidence": 0.7104,
+      "bbox": [
+        87,
+        29,
+        311,
+        69
+      ],
+      "center": [
+        199,
+        49
+      ],
+      "label": "Inbox (1) yeskendir zharkyn"
+    },
+    {
+      "id": 33,
+      "class": "input_field",
+      "confidence": 0.709,
+      "bbox": [
+        75,
+        216,
+        313,
+        282
+      ],
+      "center": [
+        194,
+        249
+      ],
+      "label": "Compose"
+    },
+    {
+      "id": 34,
+      "class": "icon",
+      "confidence": 0.7079,
+      "bbox": [
+        702,
+        112,
+        768,
+        145
+      ],
+      "center": [
+        735,
+        128
+      ],
+      "label": "Claude"
+    },
+    {
+      "id": 35,
+      "class": "icon",
+      "confidence": 0.7021,
+      "bbox": [
+        2178,
+        1363,
+        2250,
+        1424
+      ],
+      "center": [
+        2214,
+        1393
+      ],
+      "label": ""
+    },
+    {
+      "id": 36,
+      "class": "icon",
+      "confidence": 0.7,
+      "bbox": [
+        3392,
+        334,
+        3438,
+        379
+      ],
+      "center": [
+        3415,
+        356
+      ],
+      "label": ""
+    },
+    {
+      "id": 37,
+      "class": "checkbox",
+      "confidence": 0.699,
+      "bbox": [
+        3135,
+        0,
+        3167,
+        25
+      ],
+      "center": [
+        3151,
+        12
+      ],
+      "label": ""
+    },
+    {
+      "id": 38,
+      "class": "checkbox",
+      "confidence": 0.6965,
+      "bbox": [
+        3236,
+        164,
+        3264,
+        202
+      ],
+      "center": [
+        3250,
+        183
+      ],
+      "label": ""
+    },
+    {
+      "id": 39,
+      "class": "icon",
+      "confidence": 0.6946,
+      "bbox": [
+        2027,
+        1355,
+        2110,
+        1427
+      ],
+      "center": [
+        2068,
+        1391
+      ],
+      "label": ""
+    },
+    {
+      "id": 40,
+      "class": "icon",
+      "confidence": 0.6865,
+      "bbox": [
+        2255,
+        1362,
+        2317,
+        1425
+      ],
+      "center": [
+        2286,
+        1393
+      ],
+      "label": ""
+    },
+    {
+      "id": 41,
+      "class": "checkbox",
+      "confidence": 0.6841,
+      "bbox": [
+        1002,
+        166,
+        1030,
+        196
+      ],
+      "center": [
+        1016,
+        181
+      ],
+      "label": ""
+    },
+    {
+      "id": 42,
+      "class": "icon",
+      "confidence": 0.673,
+      "bbox": [
+        2111,
+        1360,
+        2175,
+        1426
+      ],
+      "center": [
+        2143,
+        1393
+      ],
+      "label": ""
+    },
+    {
+      "id": 43,
+      "class": "checkbox",
+      "confidence": 0.6631,
+      "bbox": [
+        3178,
+        0,
+        3203,
+        24
+      ],
+      "center": [
+        3190,
+        12
+      ],
+      "label": ""
+    },
+    {
+      "id": 44,
+      "class": "icon",
+      "confidence": 0.6621,
+      "bbox": [
+        3392,
+        279,
+        3437,
+        319
+      ],
+      "center": [
+        3414,
+        299
+      ],
+      "label": ""
+    },
+    {
+      "id": 45,
+      "class": "icon",
+      "confidence": 0.6605,
+      "bbox": [
+        3260,
+        1106,
+        3301,
+        1139
+      ],
+      "center": [
+        3280,
+        1122
+      ],
+      "label": ""
+    },
+    {
+      "id": 46,
+      "class": "checkbox",
+      "confidence": 0.6449,
+      "bbox": [
+        3100,
+        0,
+        3127,
+        25
+      ],
+      "center": [
+        3113,
+        12
+      ],
+      "label": ""
+    },
+    {
+      "id": 47,
+      "class": "checkbox",
+      "confidence": 0.6208,
+      "bbox": [
+        3028,
+        0,
+        3054,
+        25
+      ],
+      "center": [
+        3041,
+        12
+      ],
+      "label": ""
+    },
+    {
+      "id": 48,
+      "class": "icon",
+      "confidence": 0.6202,
+      "bbox": [
+        3260,
+        1066,
+        3303,
+        1099
+      ],
+      "center": [
+        3281,
+        1082
+      ],
+      "label": ""
+    },
+    {
+      "id": 49,
+      "class": "icon",
+      "confidence": 0.6167,
+      "bbox": [
+        576,
+        113,
+        623,
+        144
+      ],
+      "center": [
+        599,
+        128
+      ],
+      "label": "stat"
+    },
+    {
+      "id": 50,
+      "class": "checkbox",
+      "confidence": 0.6101,
+      "bbox": [
+        3278,
+        77,
+        3311,
+        110
+      ],
+      "center": [
+        3294,
+        93
+      ],
+      "label": ""
+    },
+    {
+      "id": 51,
+      "class": "icon",
+      "confidence": 0.603,
+      "bbox": [
+        3393,
+        535,
+        3437,
+        582
+      ],
+      "center": [
+        3415,
+        558
+      ],
+      "label": ""
+    },
+    {
+      "id": 52,
+      "class": "checkbox",
+      "confidence": 0.6023,
+      "bbox": [
+        3313,
+        75,
+        3346,
+        109
+      ],
+      "center": [
+        3329,
+        92
+      ],
+      "label": ""
+    },
+    {
+      "id": 53,
+      "class": "icon",
+      "confidence": 0.5973,
+      "bbox": [
+        3303,
+        221,
+        3359,
+        256
+      ],
+      "center": [
+        3331,
+        238
+      ],
+      "label": ""
+    },
+    {
+      "id": 54,
+      "class": "checkbox",
+      "confidence": 0.5931,
+      "bbox": [
+        3240,
+        77,
+        3274,
+        110
+      ],
+      "center": [
+        3257,
+        93
+      ],
+      "label": ""
+    },
+    {
+      "id": 55,
+      "class": "checkbox",
+      "confidence": 0.5867,
+      "bbox": [
+        3229,
+        222,
+        3261,
+        255
+      ],
+      "center": [
+        3245,
+        238
+      ],
+      "label": ""
+    },
+    {
+      "id": 56,
+      "class": "checkbox",
+      "confidence": 0.5828,
+      "bbox": [
+        3060,
+        0,
+        3090,
+        25
+      ],
+      "center": [
+        3075,
+        12
+      ],
+      "label": ""
+    },
+    {
+      "id": 57,
+      "class": "input_field",
+      "confidence": 0.5768,
+      "bbox": [
+        79,
+        152,
+        311,
+        209
+      ],
+      "center": [
+        195,
+        180
+      ],
+      "label": "Gmail"
+    },
+    {
+      "id": 58,
+      "class": "checkbox",
+      "confidence": 0.5734,
+      "bbox": [
+        3269,
+        222,
+        3298,
+        254
+      ],
+      "center": [
+        3283,
+        238
+      ],
+      "label": ""
+    },
+    {
+      "id": 59,
+      "class": "checkbox",
+      "confidence": 0.5684,
+      "bbox": [
+        3402,
+        74,
+        3437,
+        110
+      ],
+      "center": [
+        3419,
+        92
+      ],
+      "label": ""
+    },
+    {
+      "id": 60,
+      "class": "icon",
+      "confidence": 0.5671,
+      "bbox": [
+        12,
+        221,
+        56,
+        282
+      ],
+      "center": [
+        34,
+        251
+      ],
+      "label": "Mail"
+    },
+    {
+      "id": 61,
+      "class": "icon",
+      "confidence": 0.5666,
+      "bbox": [
+        46,
+        0,
+        110,
+        26
+      ],
+      "center": [
+        78,
+        13
+      ],
+      "label": "Chrome"
+    },
+    {
+      "id": 62,
+      "class": "checkbox",
+      "confidence": 0.562,
+      "bbox": [
+        3358,
+        74,
+        3397,
+        109
+      ],
+      "center": [
+        3377,
+        91
+      ],
+      "label": ""
+    },
+    {
+      "id": 63,
+      "class": "checkbox",
+      "confidence": 0.5608,
+      "bbox": [
+        3252,
+        0,
+        3277,
+        25
+      ],
+      "center": [
+        3264,
+        12
+      ],
+      "label": ""
+    },
+    {
+      "id": 64,
+      "class": "checkbox",
+      "confidence": 0.5599,
+      "bbox": [
+        475,
+        0,
+        503,
+        26
+      ],
+      "center": [
+        489,
+        13
+      ],
+      "label": "Tab"
+    },
+    {
+      "id": 65,
+      "class": "icon",
+      "confidence": 0.5538,
+      "bbox": [
+        3312,
+        625,
+        3362,
+        661
+      ],
+      "center": [
+        3337,
+        643
+      ],
+      "label": "Apr"
+    },
+    {
+      "id": 66,
+      "class": "button",
+      "confidence": 0.5517,
+      "bbox": [
+        357,
+        111,
+        469,
+        145
+      ],
+      "center": [
+        413,
+        128
+      ],
+      "label": "Google Gemini"
+    },
+    {
+      "id": 67,
+      "class": "icon",
+      "confidence": 0.5423,
+      "bbox": [
+        410,
+        0,
+        461,
+        26
+      ],
+      "center": [
+        435,
+        13
+      ],
+      "label": "Profiles"
+    },
+    {
+      "id": 68,
+      "class": "checkbox",
+      "confidence": 0.5364,
+      "bbox": [
+        47,
+        75,
+        76,
+        105
+      ],
+      "center": [
+        61,
+        90
+      ],
+      "label": ""
+    },
+    {
+      "id": 69,
+      "class": "checkbox",
+      "confidence": 0.5337,
+      "bbox": [
+        3401,
+        32,
+        3438,
+        70
+      ],
+      "center": [
+        3419,
+        51
+      ],
+      "label": ""
+    },
+    {
+      "id": 70,
+      "class": "checkbox",
+      "confidence": 0.5333,
+      "bbox": [
+        3,
+        75,
+        36,
+        106
+      ],
+      "center": [
+        19,
+        90
+      ],
+      "label": ""
+    },
+    {
+      "id": 71,
+      "class": "checkbox",
+      "confidence": 0.5329,
+      "bbox": [
+        279,
+        544,
+        307,
+        572
+      ],
+      "center": [
+        293,
+        558
+      ],
+      "label": ""
+    },
+    {
+      "id": 72,
+      "class": "icon",
+      "confidence": 0.5214,
+      "bbox": [
+        3312,
+        1066,
+        3359,
+        1098
+      ],
+      "center": [
+        3335,
+        1082
+      ],
+      "label": "Apr 6"
+    },
+    {
+      "id": 73,
+      "class": "icon",
+      "confidence": 0.5203,
+      "bbox": [
+        334,
+        221,
+        379,
+        258
+      ],
+      "center": [
+        356,
+        239
+      ],
+      "label": ""
+    },
+    {
+      "id": 74,
+      "class": "icon",
+      "confidence": 0.5182,
+      "bbox": [
+        256,
+        0,
+        311,
+        23
+      ],
+      "center": [
+        283,
+        11
+      ],
+      "label": "History"
+    },
+    {
+      "id": 75,
+      "class": "button",
+      "confidence": 0.5128,
+      "bbox": [
+        319,
+        0,
+        396,
+        25
+      ],
+      "center": [
+        357,
+        12
+      ],
+      "label": "Bookmarks"
+    },
+    {
+      "id": 76,
+      "class": "checkbox",
+      "confidence": 0.5111,
+      "bbox": [
+        18,
+        294,
+        53,
+        331
+      ],
+      "center": [
+        35,
+        312
+      ],
+      "label": ""
+    },
+    {
+      "id": 77,
+      "class": "checkbox",
+      "confidence": 0.5061,
+      "bbox": [
+        10,
+        0,
+        42,
+        27
+      ],
+      "center": [
+        26,
+        13
+      ],
+      "label": ""
+    },
+    {
+      "id": 78,
+      "class": "checkbox",
+      "confidence": 0.4969,
+      "bbox": [
+        81,
+        77,
+        110,
+        105
+      ],
+      "center": [
+        95,
+        91
+      ],
+      "label": ""
+    },
+    {
+      "id": 79,
+      "class": "checkbox",
+      "confidence": 0.4905,
+      "bbox": [
+        161,
+        0,
+        196,
+        25
+      ],
+      "center": [
+        178,
+        12
+      ],
+      "label": "Edit"
+    },
+    {
+      "id": 80,
+      "class": "checkbox",
+      "confidence": 0.4892,
+      "bbox": [
+        119,
+        0,
+        151,
+        25
+      ],
+      "center": [
+        135,
+        12
+      ],
+      "label": "File"
+    },
+    {
+      "id": 81,
+      "class": "icon",
+      "confidence": 0.4824,
+      "bbox": [
+        516,
+        1,
+        574,
+        25
+      ],
+      "center": [
+        545,
+        13
+      ],
+      "label": "Window"
+    },
+    {
+      "id": 82,
+      "class": "checkbox",
+      "confidence": 0.4819,
+      "bbox": [
+        391,
+        221,
+        427,
+        256
+      ],
+      "center": [
+        409,
+        238
+      ],
+      "label": ""
+    },
+    {
+      "id": 83,
+      "class": "checkbox",
+      "confidence": 0.4787,
+      "bbox": [
+        205,
+        0,
+        244,
+        24
+      ],
+      "center": [
+        224,
+        12
+      ],
+      "label": "View"
+    },
+    {
+      "id": 84,
+      "class": "button",
+      "confidence": 0.4673,
+      "bbox": [
+        210,
+        111,
+        298,
+        145
+      ],
+      "center": [
+        254,
+        128
+      ],
+      "label": "translate"
+    },
+    {
+      "id": 85,
+      "class": "checkbox",
+      "confidence": 0.4646,
+      "bbox": [
+        333,
+        348,
+        363,
+        378
+      ],
+      "center": [
+        348,
+        363
+      ],
+      "label": ""
+    },
+    {
+      "id": 86,
+      "class": "icon",
+      "confidence": 0.462,
+      "bbox": [
+        9,
+        164,
+        55,
+        205
+      ],
+      "center": [
+        32,
+        184
+      ],
+      "label": ""
+    },
+    {
+      "id": 87,
+      "class": "icon",
+      "confidence": 0.4615,
+      "bbox": [
+        3393,
+        596,
+        3435,
+        630
+      ],
+      "center": [
+        3414,
+        613
+      ],
+      "label": ""
+    },
+    {
+      "id": 88,
+      "class": "checkbox",
+      "confidence": 0.4602,
+      "bbox": [
+        18,
+        317,
+        52,
+        350
+      ],
+      "center": [
+        35,
+        333
+      ],
+      "label": "Chat"
+    },
+    {
+      "id": 89,
+      "class": "button",
+      "confidence": 0.458,
+      "bbox": [
+        478,
+        112,
+        565,
+        145
+      ],
+      "center": [
+        521,
+        128
+      ],
+      "label": "PG gutenberg"
+    },
+    {
+      "id": 90,
+      "class": "checkbox",
+      "confidence": 0.4564,
+      "bbox": [
+        14,
+        358,
+        49,
+        393
+      ],
+      "center": [
+        31,
+        375
+      ],
+      "label": ""
+    },
+    {
+      "id": 91,
+      "class": "checkbox",
+      "confidence": 0.4556,
+      "bbox": [
+        333,
+        307,
+        363,
+        337
+      ],
+      "center": [
+        348,
+        322
+      ],
+      "label": ""
+    },
+    {
+      "id": 92,
+      "class": "checkbox",
+      "confidence": 0.452,
+      "bbox": [
+        368,
+        708,
+        394,
+        737
+      ],
+      "center": [
+        381,
+        722
+      ],
+      "label": ""
+    },
+    {
+      "id": 93,
+      "class": "checkbox",
+      "confidence": 0.4504,
+      "bbox": [
+        335,
+        389,
+        364,
+        418
+      ],
+      "center": [
+        349,
+        403
+      ],
+      "label": ""
+    },
+    {
+      "id": 94,
+      "class": "button",
+      "confidence": 0.4488,
+      "bbox": [
+        121,
+        112,
+        206,
+        144
+      ],
+      "center": [
+        163,
+        128
+      ],
+      "label": "YouTube"
+    },
+    {
+      "id": 95,
+      "class": "checkbox",
+      "confidence": 0.4471,
+      "bbox": [
+        3262,
+        949,
+        3300,
+        981
+      ],
+      "center": [
+        3281,
+        965
+      ],
+      "label": ""
+    },
+    {
+      "id": 96,
+      "class": "checkbox",
+      "confidence": 0.4429,
+      "bbox": [
+        3211,
+        0,
+        3240,
+        25
+      ],
+      "center": [
+        3225,
+        12
+      ],
+      "label": ""
+    },
+    {
+      "id": 97,
+      "class": "icon",
+      "confidence": 0.4386,
+      "bbox": [
+        300,
+        112,
+        347,
+        145
+      ],
+      "center": [
+        323,
+        128
+      ],
+      "label": "gpt"
+    },
+    {
+      "id": 98,
+      "class": "icon",
+      "confidence": 0.4377,
+      "bbox": [
+        3394,
+        441,
+        3436,
+        471
+      ],
+      "center": [
+        3415,
+        456
+      ],
+      "label": ""
+    },
+    {
+      "id": 99,
+      "class": "checkbox",
+      "confidence": 0.4328,
+      "bbox": [
+        334,
+        708,
+        365,
+        738
+      ],
+      "center": [
+        349,
+        723
+      ],
+      "label": ""
+    },
+    {
+      "id": 100,
+      "class": "checkbox",
+      "confidence": 0.4326,
+      "bbox": [
+        368,
+        309,
+        393,
+        337
+      ],
+      "center": [
+        380,
+        323
+      ],
+      "label": ""
+    },
+    {
+      "id": 101,
+      "class": "checkbox",
+      "confidence": 0.425,
+      "bbox": [
+        334,
+        270,
+        362,
+        296
+      ],
+      "center": [
+        348,
+        283
+      ],
+      "label": ""
+    },
+    {
+      "id": 102,
+      "class": "checkbox",
+      "confidence": 0.4239,
+      "bbox": [
+        334,
+        948,
+        365,
+        979
+      ],
+      "center": [
+        349,
+        963
+      ],
+      "label": ""
+    },
+    {
+      "id": 103,
+      "class": "checkbox",
+      "confidence": 0.4229,
+      "bbox": [
+        368,
+        948,
+        392,
+        978
+      ],
+      "center": [
+        380,
+        963
+      ],
+      "label": ""
+    },
+    {
+      "id": 104,
+      "class": "checkbox",
+      "confidence": 0.422,
+      "bbox": [
+        368,
+        349,
+        392,
+        377
+      ],
+      "center": [
+        380,
+        363
+      ],
+      "label": ""
+    },
+    {
+      "id": 105,
+      "class": "checkbox",
+      "confidence": 0.4206,
+      "bbox": [
+        588,
+        1,
+        621,
+        26
+      ],
+      "center": [
+        604,
+        13
+      ],
+      "label": "Help"
+    },
+    {
+      "id": 106,
+      "class": "checkbox",
+      "confidence": 0.4101,
+      "bbox": [
+        3194,
+        75,
+        3230,
+        111
+      ],
+      "center": [
+        3212,
+        93
+      ],
+      "label": ""
+    },
+    {
+      "id": 107,
+      "class": "checkbox",
+      "confidence": 0.4067,
+      "bbox": [
+        368,
+        390,
+        392,
+        417
+      ],
+      "center": [
+        380,
+        403
+      ],
+      "label": ""
+    }
+  ]
+}

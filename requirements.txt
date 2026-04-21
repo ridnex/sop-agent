@@ -1,0 +1,27 @@
+# Core
+openai>=1.0.0
+python-dotenv>=1.0.0
+dirtyjson>=1.0.0
+
+# Execution (pyautogui + macOS APIs)
+pyautogui>=0.9.54
+pynput>=1.7.6
+pyobjc-framework-ApplicationServices>=10.0
+pyobjc-framework-Cocoa>=10.0
+pyobjc-framework-Quartz>=10.0
+
+# Recording (video + screenshots)
+moviepy>=2.0.0
+numpy>=1.24.0
+Pillow>=10.0.0
+
+# YOLO detection
+ultralytics
+easyocr
+opencv-python-headless
+huggingface_hub
+
+# Grounding DINO detection
+transformers>=4.36.0
+torch>=2.0.0
+torchvision>=0.15.0

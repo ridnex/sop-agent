@@ -1,0 +1,8 @@
+1. open https://portal.kaust.edu.sa/
+2. wait me untill i will log in(wait 10s)
+3. go to the business apps
+4. click student self servicees
+5. click course regestration
+6. Choose academic period 2025/26 spring
+7. press continue button
+8. just show whar courses i registred

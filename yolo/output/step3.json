@@ -1,0 +1,1417 @@
+{
+  "image": "input/step3.png",
+  "resolution": {
+    "width": 3456,
+    "height": 2234
+  },
+  "elements": [
+    {
+      "id": 1,
+      "class": "button",
+      "confidence": 0.9531,
+      "bbox": [
+        943,
+        1327,
+        1323,
+        1554
+      ],
+      "center": [
+        1133,
+        1440
+      ],
+      "label": "NeT\"5 AmD UPDATES THELENS The Lens"
+    },
+    {
+      "id": 2,
+      "class": "button",
+      "confidence": 0.9454,
+      "bbox": [
+        943,
+        1088,
+        1322,
+        1311
+      ],
+      "center": [
+        1132,
+        1199
+      ],
+      "label": "Policy"
+    },
+    {
+      "id": 3,
+      "class": "button",
+      "confidence": 0.943,
+      "bbox": [
+        546,
+        1084,
+        927,
+        1312
+      ],
+      "center": [
+        736,
+        1198
+      ],
+      "label": "KAUST Strategy"
+    },
+    {
+      "id": 4,
+      "class": "button",
+      "confidence": 0.9386,
+      "bbox": [
+        2528,
+        598,
+        2909,
+        827
+      ],
+      "center": [
+        2718,
+        712
+      ],
+      "label": "3## IT Listens"
+    },
+    {
+      "id": 5,
+      "class": "button",
+      "confidence": 0.9361,
+      "bbox": [
+        1737,
+        595,
+        2117,
+        824
+      ],
+      "center": [
+        1927,
+        709
+      ],
+      "label": "VMS"
+    },
+    {
+      "id": 6,
+      "class": "button",
+      "confidence": 0.9348,
+      "bbox": [
+        548,
+        1326,
+        927,
+        1555
+      ],
+      "center": [
+        737,
+        1440
+      ],
+      "label": "Speak Up"
+    },
+    {
+      "id": 7,
+      "class": "dropdown",
+      "confidence": 0.9307,
+      "bbox": [
+        944,
+        844,
+        1322,
+        1073
+      ],
+      "center": [
+        1133,
+        958
+      ],
+      "label": "Recovery Email"
+    },
+    {
+      "id": 8,
+      "class": "button",
+      "confidence": 0.9284,
+      "bbox": [
+        546,
+        595,
+        927,
+        828
+      ],
+      "center": [
+        736,
+        711
+      ],
+      "label": "Task Center"
+    },
+    {
+      "id": 9,
+      "class": "button",
+      "confidence": 0.9281,
+      "bbox": [
+        554,
+        844,
+        925,
+        1072
+      ],
+      "center": [
+        739,
+        958
+      ],
+      "label": "Change Password"
+    },
+    {
+      "id": 10,
+      "class": "button",
+      "confidence": 0.9217,
+      "bbox": [
+        1342,
+        844,
+        1718,
+        1073
+      ],
+      "center": [
+        1530,
+        958
+      ],
+      "label": "Calendar"
+    },
+    {
+      "id": 11,
+      "class": "dropdown",
+      "confidence": 0.9198,
+      "bbox": [
+        1341,
+        597,
+        1720,
+        827
+      ],
+      "center": [
+        1530,
+        712
+      ],
+      "label": "GA eServices"
+    },
+    {
+      "id": 12,
+      "class": "button",
+      "confidence": 0.9153,
+      "bbox": [
+        1342,
+        1088,
+        1720,
+        1310
+      ],
+      "center": [
+        1531,
+        1199
+      ],
+      "label": "Training"
+    },
+    {
+      "id": 13,
+      "class": "dropdown",
+      "confidence": 0.9113,
+      "bbox": [
+        2134,
+        595,
+        2510,
+        829
+      ],
+      "center": [
+        2322,
+        712
+      ],
+      "label": "IT Service Desk"
+    },
+    {
+      "id": 14,
+      "class": "button",
+      "confidence": 0.8965,
+      "bbox": [
+        944,
+        598,
+        1323,
+        832
+      ],
+      "center": [
+        1133,
+        715
+      ],
+      "label": "Business Apps"
+    },
+    {
+      "id": 15,
+      "class": "input_field",
+      "confidence": 0.8854,
+      "bbox": [
+        546,
+        1876,
+        927,
+        2011
+      ],
+      "center": [
+        736,
+        1943
+      ],
+      "label": "KAUSTCentral App"
+    },
+    {
+      "id": 16,
+      "class": "dropdown",
+      "confidence": 0.8826,
+      "bbox": [
+        1735,
+        1875,
+        2116,
+        2015
+      ],
+      "center": [
+        1925,
+        1945
+      ],
+      "label": "Expense & Travel SAP Concur App"
+    },
+    {
+      "id": 17,
+      "class": "input_field",
+      "confidence": 0.8785,
+      "bbox": [
+        940,
+        1875,
+        1322,
+        2014
+      ],
+      "center": [
+        1131,
+        1944
+      ],
+      "label": "959@FM App"
+    },
+    {
+      "id": 18,
+      "class": "text",
+      "confidence": 0.8723,
+      "bbox": [
+        1311,
+        2077,
+        1448,
+        2206
+      ],
+      "center": [
+        1379,
+        2141
+      ],
+      "label": ""
+    },
+    {
+      "id": 19,
+      "class": "text",
+      "confidence": 0.8707,
+      "bbox": [
+        1733,
+        2077,
+        1877,
+        2207
+      ],
+      "center": [
+        1805,
+        2142
+      ],
+      "label": ""
+    },
+    {
+      "id": 20,
+      "class": "text",
+      "confidence": 0.8687,
+      "bbox": [
+        1166,
+        2076,
+        1310,
+        2208
+      ],
+      "center": [
+        1238,
+        2142
+      ],
+      "label": ""
+    },
+    {
+      "id": 21,
+      "class": "text",
+      "confidence": 0.8633,
+      "bbox": [
+        2085,
+        2076,
+        2227,
+        2207
+      ],
+      "center": [
+        2156,
+        2141
+      ],
+      "label": ""
+    },
+    {
+      "id": 22,
+      "class": "text",
+      "confidence": 0.8548,
+      "bbox": [
+        1452,
+        2078,
+        1594,
+        2205
+      ],
+      "center": [
+        1523,
+        2141
+      ],
+      "label": ""
+    },
+    {
+      "id": 23,
+      "class": "text",
+      "confidence": 0.8534,
+      "bbox": [
+        1599,
+        2077,
+        1734,
+        2205
+      ],
+      "center": [
+        1666,
+        2141
+      ],
+      "label": "N"
+    },
+    {
+      "id": 24,
+      "class": "button",
+      "confidence": 0.8489,
+      "bbox": [
+        1796,
+        327,
+        1929,
+        389
+      ],
+      "center": [
+        1862,
+        358
+      ],
+      "label": "All"
+    },
+    {
+      "id": 25,
+      "class": "text",
+      "confidence": 0.8464,
+      "bbox": [
+        2224,
+        2076,
+        2366,
+        2207
+      ],
+      "center": [
+        2295,
+        2141
+      ],
+      "label": ""
+    },
+    {
+      "id": 26,
+      "class": "text",
+      "confidence": 0.8332,
+      "bbox": [
+        1029,
+        2074,
+        1166,
+        2208
+      ],
+      "center": [
+        1097,
+        2141
+      ],
+      "label": ""
+    },
+    {
+      "id": 27,
+      "class": "text",
+      "confidence": 0.8326,
+      "bbox": [
+        744,
+        2074,
+        879,
+        2208
+      ],
+      "center": [
+        811,
+        2141
+      ],
+      "label": ""
+    },
+    {
+      "id": 28,
+      "class": "text",
+      "confidence": 0.8324,
+      "bbox": [
+        1947,
+        2075,
+        2081,
+        2207
+      ],
+      "center": [
+        2014,
+        2141
+      ],
+      "label": ""
+    },
+    {
+      "id": 29,
+      "class": "button",
+      "confidence": 0.8276,
+      "bbox": [
+        1344,
+        1326,
+        1721,
+        1553
+      ],
+      "center": [
+        1532,
+        1439
+      ],
+      "label": "Search"
+    },
+    {
+      "id": 30,
+      "class": "input_field",
+      "confidence": 0.8151,
+      "bbox": [
+        1406,
+        238,
+        1538,
+        288
+      ],
+      "center": [
+        1472,
+        263
+      ],
+      "label": "Claude"
+    },
+    {
+      "id": 31,
+      "class": "text",
+      "confidence": 0.814,
+      "bbox": [
+        889,
+        2070,
+        1025,
+        2208
+      ],
+      "center": [
+        957,
+        2139
+      ],
+      "label": "2"
+    },
+    {
+      "id": 32,
+      "class": "text",
+      "confidence": 0.8088,
+      "bbox": [
+        598,
+        2073,
+        744,
+        2208
+      ],
+      "center": [
+        671,
+        2140
+      ],
+      "label": ""
+    },
+    {
+      "id": 33,
+      "class": "icon",
+      "confidence": 0.7949,
+      "bbox": [
+        2963,
+        167,
+        3012,
+        220
+      ],
+      "center": [
+        2987,
+        193
+      ],
+      "label": ""
+    },
+    {
+      "id": 34,
+      "class": "icon",
+      "confidence": 0.7892,
+      "bbox": [
+        3093,
+        322,
+        3172,
+        397
+      ],
+      "center": [
+        3132,
+        359
+      ],
+      "label": ""
+    },
+    {
+      "id": 35,
+      "class": "icon",
+      "confidence": 0.789,
+      "bbox": [
+        3196,
+        322,
+        3275,
+        399
+      ],
+      "center": [
+        3235,
+        360
+      ],
+      "label": ""
+    },
+    {
+      "id": 36,
+      "class": "button",
+      "confidence": 0.7861,
+      "bbox": [
+        1269,
+        239,
+        1380,
+        289
+      ],
+      "center": [
+        1324,
+        264
+      ],
+      "label": "slack"
+    },
+    {
+      "id": 37,
+      "class": "input_field",
+      "confidence": 0.7824,
+      "bbox": [
+        955,
+        237,
+        1124,
+        286
+      ],
+      "center": [
+        1039,
+        261
+      ],
+      "label": "Pa gutenberg"
+    },
+    {
+      "id": 38,
+      "class": "text",
+      "confidence": 0.7777,
+      "bbox": [
+        6,
+        67,
+        152,
+        137
+      ],
+      "center": [
+        79,
+        102
+      ],
+      "label": ""
+    },
+    {
+      "id": 39,
+      "class": "button",
+      "confidence": 0.7651,
+      "bbox": [
+        2132,
+        1876,
+        2509,
+        2011
+      ],
+      "center": [
+        2320,
+        1943
+      ],
+      "label": "Business Apps SAP Mobile Start App"
+    },
+    {
+      "id": 40,
+      "class": "icon",
+      "confidence": 0.7609,
+      "bbox": [
+        2282,
+        79,
+        2331,
+        131
+      ],
+      "center": [
+        2306,
+        105
+      ],
+      "label": "X"
+    },
+    {
+      "id": 41,
+      "class": "button",
+      "confidence": 0.7588,
+      "bbox": [
+        610,
+        78,
+        973,
+        127
+      ],
+      "center": [
+        791,
+        102
+      ],
+      "label": "Orchestra-Research/AI-Re"
+    },
+    {
+      "id": 42,
+      "class": "icon",
+      "confidence": 0.7541,
+      "bbox": [
+        3058,
+        167,
+        3115,
+        217
+      ],
+      "center": [
+        3086,
+        192
+      ],
+      "label": ""
+    },
+    {
+      "id": 43,
+      "class": "icon",
+      "confidence": 0.7506,
+      "bbox": [
+        3001,
+        325,
+        3078,
+        391
+      ],
+      "center": [
+        3039,
+        358
+      ],
+      "label": ""
+    },
+    {
+      "id": 44,
+      "class": "button",
+      "confidence": 0.7363,
+      "bbox": [
+        2183,
+        1274,
+        2328,
+        1340
+      ],
+      "center": [
+        2255,
+        1307
+      ],
+      "label": "14"
+    },
+    {
+      "id": 45,
+      "class": "button",
+      "confidence": 0.7219,
+      "bbox": [
+        713,
+        239,
+        935,
+        287
+      ],
+      "center": [
+        824,
+        263
+      ],
+      "label": "Google Gemini"
+    },
+    {
+      "id": 46,
+      "class": "text",
+      "confidence": 0.7217,
+      "bbox": [
+        2721,
+        2075,
+        2851,
+        2216
+      ],
+      "center": [
+        2786,
+        2145
+      ],
+      "label": ""
+    },
+    {
+      "id": 47,
+      "class": "text",
+      "confidence": 0.7196,
+      "bbox": [
+        2435,
+        2084,
+        2571,
+        2196
+      ],
+      "center": [
+        2503,
+        2140
+      ],
+      "label": ""
+    },
+    {
+      "id": 48,
+      "class": "icon",
+      "confidence": 0.7179,
+      "bbox": [
+        1413,
+        80,
+        1461,
+        130
+      ],
+      "center": [
+        1437,
+        105
+      ],
+      "label": "X"
+    },
+    {
+      "id": 49,
+      "class": "input_field",
+      "confidence": 0.7072,
+      "bbox": [
+        1338,
+        1875,
+        1719,
+        2012
+      ],
+      "center": [
+        1528,
+        1943
+      ],
+      "label": "HR Connect SAP SuccessFactors App"
+    },
+    {
+      "id": 50,
+      "class": "text",
+      "confidence": 0.7067,
+      "bbox": [
+        10,
+        158,
+        78,
+        288
+      ],
+      "center": [
+        44,
+        223
+      ],
+      "label": ""
+    },
+    {
+      "id": 51,
+      "class": "button",
+      "confidence": 0.6977,
+      "bbox": [
+        1150,
+        238,
+        1243,
+        288
+      ],
+      "center": [
+        1196,
+        263
+      ],
+      "label": "stat"
+    },
+    {
+      "id": 52,
+      "class": "icon",
+      "confidence": 0.6954,
+      "bbox": [
+        3201,
+        164,
+        3274,
+        213
+      ],
+      "center": [
+        3237,
+        188
+      ],
+      "label": ""
+    },
+    {
+      "id": 53,
+      "class": "icon",
+      "confidence": 0.6907,
+      "bbox": [
+        3150,
+        79,
+        3208,
+        135
+      ],
+      "center": [
+        3179,
+        107
+      ],
+      "label": "X"
+    },
+    {
+      "id": 54,
+      "class": "icon",
+      "confidence": 0.6852,
+      "bbox": [
+        3129,
+        167,
+        3185,
+        216
+      ],
+      "center": [
+        3157,
+        191
+      ],
+      "label": ""
+    },
+    {
+      "id": 55,
+      "class": "icon",
+      "confidence": 0.6777,
+      "bbox": [
+        3286,
+        164,
+        3371,
+        213
+      ],
+      "center": [
+        3328,
+        188
+      ],
+      "label": ""
+    },
+    {
+      "id": 56,
+      "class": "icon",
+      "confidence": 0.6679,
+      "bbox": [
+        3018,
+        1,
+        3067,
+        62
+      ],
+      "center": [
+        3042,
+        31
+      ],
+      "label": ""
+    },
+    {
+      "id": 57,
+      "class": "icon",
+      "confidence": 0.6639,
+      "bbox": [
+        153,
+        158,
+        222,
+        252
+      ],
+      "center": [
+        187,
+        205
+      ],
+      "label": ""
+    },
+    {
+      "id": 58,
+      "class": "text",
+      "confidence": 0.6572,
+      "bbox": [
+        2573,
+        2088,
+        2717,
+        2214
+      ],
+      "center": [
+        2645,
+        2151
+      ],
+      "label": ""
+    },
+    {
+      "id": 59,
+      "class": "icon",
+      "confidence": 0.6569,
+      "bbox": [
+        2947,
+        1,
+        3003,
+        62
+      ],
+      "center": [
+        2975,
+        31
+      ],
+      "label": ""
+    },
+    {
+      "id": 60,
+      "class": "input_field",
+      "confidence": 0.6534,
+      "bbox": [
+        245,
+        240,
+        399,
+        287
+      ],
+      "center": [
+        322,
+        263
+      ],
+      "label": "YouTube"
+    },
+    {
+      "id": 61,
+      "class": "icon",
+      "confidence": 0.6338,
+      "bbox": [
+        975,
+        79,
+        1023,
+        130
+      ],
+      "center": [
+        999,
+        104
+      ],
+      "label": "X"
+    },
+    {
+      "id": 62,
+      "class": "icon",
+      "confidence": 0.6333,
+      "bbox": [
+        2646,
+        4,
+        2704,
+        61
+      ],
+      "center": [
+        2675,
+        32
+      ],
+      "label": ""
+    },
+    {
+      "id": 63,
+      "class": "input_field",
+      "confidence": 0.6294,
+      "bbox": [
+        1065,
+        80,
+        1413,
+        128
+      ],
+      "center": [
+        1239,
+        104
+      ],
+      "label": "gui-element-detection/src"
+    },
+    {
+      "id": 64,
+      "class": "icon",
+      "confidence": 0.6157,
+      "bbox": [
+        1849,
+        78,
+        1896,
+        131
+      ],
+      "center": [
+        1872,
+        104
+      ],
+      "label": "X"
+    },
+    {
+      "id": 65,
+      "class": "icon",
+      "confidence": 0.6118,
+      "bbox": [
+        3090,
+        0,
+        3145,
+        60
+      ],
+      "center": [
+        3117,
+        30
+      ],
+      "label": "8"
+    },
+    {
+      "id": 66,
+      "class": "button",
+      "confidence": 0.5989,
+      "bbox": [
+        2727,
+        1338,
+        2869,
+        1405
+      ],
+      "center": [
+        2798,
+        1371
+      ],
+      "label": "25"
+    },
+    {
+      "id": 67,
+      "class": "icon",
+      "confidence": 0.5832,
+      "bbox": [
+        3388,
+        166,
+        3436,
+        216
+      ],
+      "center": [
+        3412,
+        191
+      ],
+      "label": ""
+    },
+    {
+      "id": 68,
+      "class": "input_field",
+      "confidence": 0.5803,
+      "bbox": [
+        1306,
+        409,
+        1578,
+        479
+      ],
+      "center": [
+        1442,
+        444
+      ],
+      "label": "Procurement"
+    },
+    {
+      "id": 69,
+      "class": "icon",
+      "confidence": 0.5785,
+      "bbox": [
+        2717,
+        4,
+        2772,
+        62
+      ],
+      "center": [
+        2744,
+        33
+      ],
+      "label": ""
+    },
+    {
+      "id": 70,
+      "class": "input_field",
+      "confidence": 0.5433,
+      "bbox": [
+        2349,
+        80,
+        2731,
+        126
+      ],
+      "center": [
+        2540,
+        103
+      ],
+      "label": "Screen parsing (from Cha"
+    },
+    {
+      "id": 71,
+      "class": "icon",
+      "confidence": 0.543,
+      "bbox": [
+        2859,
+        2,
+        2925,
+        62
+      ],
+      "center": [
+        2892,
+        32
+      ],
+      "label": ""
+    },
+    {
+      "id": 72,
+      "class": "text",
+      "confidence": 0.5088,
+      "bbox": [
+        116,
+        149,
+        227,
+        286
+      ],
+      "center": [
+        171,
+        217
+      ],
+      "label": "Gmail"
+    },
+    {
+      "id": 73,
+      "class": "button",
+      "confidence": 0.5008,
+      "bbox": [
+        709,
+        409,
+        886,
+        481
+      ],
+      "center": [
+        797,
+        445
+      ],
+      "label": "HR"
+    },
+    {
+      "id": 74,
+      "class": "icon",
+      "confidence": 0.4869,
+      "bbox": [
+        2789,
+        3,
+        2842,
+        62
+      ],
+      "center": [
+        2815,
+        32
+      ],
+      "label": ""
+    },
+    {
+      "id": 75,
+      "class": "text",
+      "confidence": 0.4659,
+      "bbox": [
+        82,
+        158,
+        151,
+        288
+      ],
+      "center": [
+        116,
+        223
+      ],
+      "label": ""
+    },
+    {
+      "id": 76,
+      "class": "icon",
+      "confidence": 0.4586,
+      "bbox": [
+        1792,
+        1021,
+        1862,
+        1086
+      ],
+      "center": [
+        1827,
+        1053
+      ],
+      "label": ""
+    },
+    {
+      "id": 77,
+      "class": "icon",
+      "confidence": 0.4569,
+      "bbox": [
+        1051,
+        79,
+        1100,
+        131
+      ],
+      "center": [
+        1075,
+        105
+      ],
+      "label": ""
+    },
+    {
+      "id": 78,
+      "class": "icon",
+      "confidence": 0.456,
+      "bbox": [
+        541,
+        79,
+        587,
+        129
+      ],
+      "center": [
+        564,
+        104
+      ],
+      "label": ""
+    },
+    {
+      "id": 79,
+      "class": "text",
+      "confidence": 0.4088,
+      "bbox": [
+        149,
+        156,
+        227,
+        287
+      ],
+      "center": [
+        188,
+        221
+      ],
+      "label": "Gmail"
+    },
+    {
+      "id": 80,
+      "class": "icon",
+      "confidence": 0.3985,
+      "bbox": [
+        2723,
+        79,
+        2767,
+        132
+      ],
+      "center": [
+        2745,
+        105
+      ],
+      "label": ""
+    },
+    {
+      "id": 81,
+      "class": "input_field",
+      "confidence": 0.3931,
+      "bbox": [
+        1884,
+        412,
+        2074,
+        479
+      ],
+      "center": [
+        1979,
+        445
+      ],
+      "label": "Tools"
+    },
+    {
+      "id": 82,
+      "class": "input_field",
+      "confidence": 0.3895,
+      "bbox": [
+        1924,
+        81,
+        2265,
+        126
+      ],
+      "center": [
+        2094,
+        103
+      ],
+      "label": "UI Elements Comparison"
+    },
+    {
+      "id": 83,
+      "class": "icon",
+      "confidence": 0.3888,
+      "bbox": [
+        1486,
+        81,
+        1535,
+        128
+      ],
+      "center": [
+        1510,
+        104
+      ],
+      "label": ""
+    },
+    {
+      "id": 84,
+      "class": "icon",
+      "confidence": 0.3875,
+      "bbox": [
+        2355,
+        80,
+        2409,
+        129
+      ],
+      "center": [
+        2382,
+        104
+      ],
+      "label": ""
+    },
+    {
+      "id": 85,
+      "class": "button",
+      "confidence": 0.3804,
+      "bbox": [
+        103,
+        214,
+        227,
+        285
+      ],
+      "center": [
+        165,
+        249
+      ],
+      "label": "Gmail"
+    },
+    {
+      "id": 86,
+      "class": "icon",
+      "confidence": 0.3542,
+      "bbox": [
+        3384,
+        66,
+        3451,
+        145
+      ],
+      "center": [
+        3417,
+        105
+      ],
+      "label": ""
+    },
+    {
+      "id": 87,
+      "class": "input_field",
+      "confidence": 0.3481,
+      "bbox": [
+        420,
+        239,
+        580,
+        287
+      ],
+      "center": [
+        500,
+        263
+      ],
+      "label": "translate"
+    },
+    {
+      "id": 88,
+      "class": "icon",
+      "confidence": 0.3294,
+      "bbox": [
+        82,
+        156,
+        149,
+        223
+      ],
+      "center": [
+        115,
+        189
+      ],
+      "label": ""
+    }
+  ]
+}

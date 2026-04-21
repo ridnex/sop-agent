@@ -1,0 +1,22 @@
+.env
+results/
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
+
+# Large data folders (kept local only)
+outputs/
+experiments/
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+
+# Python
+*.egg-info/
+.pytest_cache/
+venv/
+.venv/
