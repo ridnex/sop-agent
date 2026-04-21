@@ -230,19 +230,23 @@ def run_agent(
                         print(f"  Claude says: {full_text[:200]}")
                 break
 
-            # Parse STEP N: tag and update attempts counter
+            # Parse STEP N: tag and update attempts counter.
+            # Claude is required to emit `STEP N:` but often drops it on follow-up
+            # turns within the same step. Treat a tag-less response with tool
+            # calls as a continuation of the current step so the attempts counter
+            # still advances and stuck detection works.
             tagged_step = parse_last_step_tag(full_text)
-            if tagged_step is not None:
-                if tagged_step == current_sop_step:
-                    attempts_on_current_step += 1
+            if tagged_step is not None and tagged_step != current_sop_step:
+                prev = current_sop_step
+                current_sop_step = tagged_step
+                attempts_on_current_step = 1
+                if prev is None:
+                    print(f"\n>> Now on SOP step {current_sop_step}")
                 else:
-                    prev = current_sop_step
-                    current_sop_step = tagged_step
-                    attempts_on_current_step = 1
-                    if prev is None:
-                        print(f"\n>> Now on SOP step {current_sop_step}")
-                    else:
-                        print(f"\n>> SOP step {prev} -> {current_sop_step}")
+                    print(f"\n>> SOP step {prev} -> {current_sop_step}")
+            elif current_sop_step is not None:
+                # Same step (Claude retagged it or dropped the tag)
+                attempts_on_current_step += 1
 
             # Stuck check — trigger repair BEFORE executing the pending tool calls
             if (
