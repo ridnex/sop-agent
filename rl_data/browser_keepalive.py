@@ -100,32 +100,33 @@ def ensure_chrome_running(
     profile_dir: Path | None = None,
     force_restart: bool = False,
 ) -> bool:
-    """Guarantee a healthy Chrome is reachable on the CDP port.
+    """Guarantee Chrome is reachable on the CDP port.
 
     Returns True if Chrome had to be launched, False if an already-running
-    Chrome was reused. Raises RuntimeError if Chrome never comes up.
+    Chrome was reused. Raises RuntimeError if a new Chrome never comes up.
 
-    If `force_restart` is True, any existing detached Chrome on the port is
-    killed first. Use this when the previous run left Chrome wedged.
-
-    Auto-recovery: if the port is open but /json/version does not respond,
-    we treat the instance as wedged and restart it, even without
-    force_restart.
+    Never kills the existing Chrome unless `force_restart=True`. If the port
+    is open we hand off to the connection layer; if that layer sees a wedged
+    Chrome it will raise a clear error with a manual-reset recipe instead of
+    destroying the user's browser state without asking.
     """
     port = _cdp_port()
-    port_was_open = _port_open("127.0.0.1", port)
 
-    if port_was_open and not force_restart:
-        if _cdp_healthy(port):
+    if _port_open("127.0.0.1", port):
+        if force_restart:
+            logger.info("force_restart requested; killing existing Chrome on port %d.", port)
+            _kill_detached_chrome(port)
+        else:
+            # Reuse whatever's running. Log a health hint if things look off,
+            # but do NOT kill — the user may have their own Chrome with cookies
+            # and logins attached to this port.
+            if not _cdp_healthy(port):
+                logger.warning(
+                    f"Port {port} is open but /json/version did not respond. "
+                    f"Will try to connect anyway. If it fails, rerun with "
+                    f"--reset-chrome to force a fresh browser."
+                )
             return False
-        logger.warning(
-            f"Port {port} is open but CDP endpoint is unresponsive; "
-            f"killing and restarting Chrome."
-        )
-        _kill_detached_chrome(port)
-    elif port_was_open and force_restart:
-        logger.info("force_restart requested; killing existing Chrome on port %d.", port)
-        _kill_detached_chrome(port)
 
     profile = profile_dir or BROWSER_PROFILE_DIR
     profile.mkdir(parents=True, exist_ok=True)
@@ -140,12 +141,16 @@ def ensure_chrome_running(
 
     deadline = time.time() + wait_timeout
     while time.time() < deadline:
-        if _port_open("127.0.0.1", port) and _cdp_healthy(port):
+        if _port_open("127.0.0.1", port):
+            # Wait one more tick for /json/version to come online, but do not
+            # block on it — a newly-launched Chrome occasionally takes an
+            # extra beat after the port opens.
+            time.sleep(0.3)
             return True
         time.sleep(0.5)
 
     raise RuntimeError(
-        f"Chrome did not open a healthy CDP endpoint on port {port} within "
-        f"{wait_timeout}s. Check that {CHROME_APP} is installed and that "
-        f"nothing else is using port {port}."
+        f"Chrome did not open CDP port {port} within {wait_timeout}s. "
+        f"Check that {CHROME_APP} is installed and that nothing else is "
+        f"using port {port}."
     )
