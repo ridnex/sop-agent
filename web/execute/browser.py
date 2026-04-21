@@ -87,37 +87,68 @@ class BrowserController:
             self._start_connect(start_url)
 
     def _start_connect(self, start_url: str) -> None:
-        """Connect to existing Chrome via CDP and open a new tab."""
+        """Connect to existing Chrome via CDP and open a new tab.
+
+        Robust against the common failure modes:
+          - CDP endpoint reachable but Chrome wedged  -> clearly fail
+          - Multiple contexts, first one stale        -> try the others
+          - new_page() hangs indefinitely             -> 10s timeout
+        """
         try:
-            self._browser = self._playwright.chromium.connect_over_cdp(CDP_URL)
+            self._browser = self._playwright.chromium.connect_over_cdp(
+                CDP_URL, timeout=10000
+            )
         except Exception as e:
             self._playwright.stop()
             raise RuntimeError(
                 f"Could not connect to Chrome at {CDP_URL}.\n"
-                f"Restart Chrome with remote debugging:\n\n"
-                f"  1. Quit Chrome completely\n"
-                f"  2. Run:\n"
-                f'     /Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome --remote-debugging-port=9222\n\n'
+                f"If a stale Chrome is the problem, kill it and retry:\n\n"
+                f"  pkill -f 'remote-debugging-port=9222'\n"
+                f"  python -m rl_data.cli run --sop <id>\n\n"
                 f"Original error: {e}"
             ) from e
 
         self._owns_browser = False
 
-        # Get the default context (the user's existing browser context)
-        contexts = self._browser.contexts
-        if contexts:
-            self._context = contexts[0]
-        else:
-            self._context = self._browser.contexts[0]
+        contexts = list(self._browser.contexts)
+        if not contexts:
+            self._playwright.stop()
+            raise RuntimeError(
+                f"Connected to Chrome at {CDP_URL} but it has no browser contexts. "
+                f"Chrome is in a broken state — kill it and retry:\n"
+                f"  pkill -f 'remote-debugging-port=9222'"
+            )
 
-        # Open a new tab in existing window
-        self._page = self._context.new_page()
+        # Try to open a new tab. If the first context refuses, walk through the
+        # remaining contexts before giving up — a previous wedged run can leave
+        # contexts[0] unusable while later ones are fine.
+        last_error: Exception | None = None
+        for ctx in contexts:
+            try:
+                page = ctx.new_page()
+                self._context = ctx
+                self._page = page
+                break
+            except Exception as e:
+                last_error = e
+                logger.warning(f"new_page failed on context {ctx}: {e}. Trying next context...")
+        else:
+            self._playwright.stop()
+            raise RuntimeError(
+                f"All {len(contexts)} Chrome contexts refused to open a new tab. "
+                f"The attached Chrome is wedged. Kill and retry:\n"
+                f"  pkill -f 'remote-debugging-port=9222'\n"
+                f"Last error: {last_error}"
+            )
 
         self._safe_initial_goto(start_url)
 
         self._page_count = len(self._context.pages)
         self._context.on("page", self._on_new_page)
-        logger.info(f"Connected to existing Chrome at {CDP_URL}, opened new tab")
+        logger.info(
+            f"Connected to existing Chrome at {CDP_URL}, opened new tab "
+            f"({len(self._context.pages)} total tabs in context)"
+        )
 
     def _start_launch(self, start_url: str) -> None:
         """Launch a new browser with persistent profile."""

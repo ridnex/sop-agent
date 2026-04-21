@@ -31,6 +31,12 @@ def main() -> int:
     )
     p_run.add_argument("--max-steps", type=int, default=MAX_STEPS)
     p_run.add_argument("--delay", type=float, default=ACTION_DELAY)
+    p_run.add_argument(
+        "--reset-chrome",
+        action="store_true",
+        help="Kill any detached Chrome on the CDP port and start a fresh one "
+             "before running. Use if the browser is wedged from a previous run.",
+    )
     p_run.add_argument("--verbose", action="store_true")
 
     args = parser.parse_args()
@@ -41,6 +47,11 @@ def main() -> int:
     )
 
     if args.command == "run":
+        if args.reset_chrome:
+            from rl_data.browser_keepalive import ensure_chrome_running
+            print("Resetting Chrome...")
+            ensure_chrome_running(force_restart=True)
+
         entry = load_sop(args.sop)
         print(f"Running SOP: {entry.id}")
         run_many([entry], max_steps=args.max_steps, delay=args.delay)
