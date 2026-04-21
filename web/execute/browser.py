@@ -117,6 +117,7 @@ class BrowserController:
             self._page.goto(start_url, wait_until="domcontentloaded")
 
         self._page_count = len(self._context.pages)
+        self._context.on("page", self._on_new_page)
         logger.info(f"Connected to existing Chrome at {CDP_URL}, opened new tab")
 
     def _start_launch(self, start_url: str) -> None:
@@ -143,6 +144,7 @@ class BrowserController:
             self._page.goto(start_url, wait_until="domcontentloaded")
 
         self._page_count = len(self._context.pages)
+        self._context.on("page", self._on_new_page)
         logger.info(
             f"Launched new browser: {BROWSER_WIDTH}x{BROWSER_HEIGHT} "
             f"(headless={self._headless}, profile={BROWSER_PROFILE_DIR})"
@@ -165,23 +167,57 @@ class BrowserController:
                 self._playwright.stop()
             logger.info("Disconnected from Chrome (window stays open)")
 
+    def _on_new_page(self, page: Page) -> None:
+        """Playwright event: a new tab or popup opened. Switch immediately."""
+        try:
+            page.wait_for_load_state("domcontentloaded", timeout=5000)
+        except Exception:
+            pass
+        self._page = page
+        try:
+            page.bring_to_front()
+        except Exception:
+            pass
+        if self._context is not None:
+            self._page_count = len(self._context.pages)
+        logger.info(f"[event] Switched to new tab: {page.url}")
+
     def _check_for_new_tab(self) -> None:
-        """If a new tab opened, switch to it automatically."""
+        """Sync fallback: pick up a new tab or recover from a closed one.
+
+        The `page` event handler catches most cases, but this runs before every
+        screenshot and after every click as a safety net.
+        """
         if self._context is None:
             return
         pages = self._context.pages
+
+        # Current page was closed -> fall back to newest open tab
+        if self._page is not None and self._page.is_closed():
+            open_pages = [p for p in pages if not p.is_closed()]
+            if open_pages:
+                self._page = open_pages[-1]
+                try:
+                    self._page.bring_to_front()
+                except Exception:
+                    pass
+                logger.info(f"Current tab was closed, switched to: {self._page.url}")
+
+        # New tab count -> switch to newest
         if len(pages) > self._page_count:
             new_page = pages[-1]
-            if new_page != self._page:
-                # Wait for new tab to load
+            if new_page != self._page and not new_page.is_closed():
                 try:
                     new_page.wait_for_load_state("domcontentloaded", timeout=5000)
                 except Exception:
-                    pass  # Page might already be loaded or timeout
+                    pass
                 self._page = new_page
-                self._page_count = len(pages)
+                try:
+                    new_page.bring_to_front()
+                except Exception:
+                    pass
                 logger.info(f"Switched to new tab: {self._page.url}")
-        # Also handle tabs being closed
+
         self._page_count = len(pages)
 
     @property
@@ -198,11 +234,13 @@ class BrowserController:
 
     def screenshot(self) -> str:
         """Capture screenshot, return base64 PNG string."""
+        self._check_for_new_tab()
         png_bytes = self.page.screenshot(type="png")
         return base64.standard_b64encode(png_bytes).decode("utf-8")
 
     def screenshot_to_file(self, path: str) -> str:
         """Capture screenshot, save to file, return base64 PNG string."""
+        self._check_for_new_tab()
         png_bytes = self.page.screenshot(type="png")
         Path(path).parent.mkdir(parents=True, exist_ok=True)
         with open(path, "wb") as f:
@@ -380,10 +418,11 @@ class BrowserController:
             else:
                 return {"output": None, "error": f"Unknown action: {action}", "base64_image": None}
 
-            # Check if a click/key opened a new tab — switch to it
+            # Check if a click/key opened a new tab — switch to it.
+            # 1.0s gives slow popups time to register before we screenshot.
             if action in ("left_click", "right_click", "middle_click", "double_click",
                           "triple_click", "key"):
-                time.sleep(0.5)  # Brief wait for new tab to appear
+                time.sleep(1.0)
                 self._check_for_new_tab()
 
             # For non-screenshot actions, return screenshot so Claude sees the result

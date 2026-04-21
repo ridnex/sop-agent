@@ -10,6 +10,9 @@ __pycache__/
 outputs/
 experiments/
 
+# Browser profile (cookies, cache, session state)
+web/.browser_profile/
+
 # IDE / editor
 .vscode/
 .idea/
