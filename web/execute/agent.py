@@ -236,8 +236,13 @@ def run_agent(
                 if tagged_step == current_sop_step:
                     attempts_on_current_step += 1
                 else:
+                    prev = current_sop_step
                     current_sop_step = tagged_step
                     attempts_on_current_step = 1
+                    if prev is None:
+                        print(f"\n>> Now on SOP step {current_sop_step}")
+                    else:
+                        print(f"\n>> SOP step {prev} -> {current_sop_step}")
 
             # Stuck check — trigger repair BEFORE executing the pending tool calls
             if (
@@ -366,7 +371,12 @@ def run_agent(
                 if text and action in ("type", "key"):
                     action_desc += f": {text[:50]}"
 
-                print(f"[Step {step_num}/{max_steps}] {action_desc}")
+                sop_progress = (
+                    f"SOP {current_sop_step} · try {attempts_on_current_step}"
+                    if current_sop_step is not None
+                    else "SOP ?"
+                )
+                print(f"[Step {step_num}/{max_steps}] [{sop_progress}] {action_desc}")
 
                 # Execute action via CDP
                 result = browser.execute_action(block.input)
@@ -385,6 +395,7 @@ def run_agent(
                     page_url=browser.current_url,
                     model_action=action_desc,
                     model_rationale=full_text[:200] if full_text else "",
+                    current_sop_step=current_sop_step,
                     error=result.get("error"),
                 )
                 log.steps.append(record)
