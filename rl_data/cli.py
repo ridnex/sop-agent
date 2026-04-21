@@ -48,9 +48,15 @@ def main() -> int:
 
     if args.command == "run":
         if args.reset_chrome:
-            from rl_data.browser_keepalive import ensure_chrome_running
-            print("Resetting Chrome...")
-            ensure_chrome_running(force_restart=True)
+            # Kill any stale detached Chrome that may be holding the CDP port
+            # or the profile lock. Each worker now launches its own Chrome via
+            # launch_persistent_context, so this is rarely needed.
+            import subprocess
+            subprocess.run(
+                ["pkill", "-f", "remote-debugging-port=9222"],
+                stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=False,
+            )
+            print("Killed any stale debug Chrome (--reset-chrome).")
 
         entry = load_sop(args.sop)
         print(f"Running SOP: {entry.id}")
