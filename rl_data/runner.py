@@ -1,34 +1,20 @@
 """Run one SOP: execute via web agent, validate, build RunRecord(s)."""
 
 import json
-import subprocess
 from dataclasses import asdict
 from datetime import datetime
 from pathlib import Path
 
+from rl_data.browser_keepalive import ensure_chrome_running
 from rl_data.config import EXECUTIONS_DIR, MAX_STEPS, ACTION_DELAY, SOPS_DIR
 from rl_data.loader import count_sop_steps
 from rl_data.models import RunRecord, SOPEntry
 from validate.validator import validate_execution
 from web.execute.agent import run_agent
-from web.execute.config import BROWSER_PROFILE_DIR
 
 
 def _slug_ts() -> str:
     return datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
-
-
-def _kill_stale_profile_chrome() -> None:
-    """Kill any Chrome still holding a lock on our dedicated profile.
-
-    Matches the exact --user-data-dir path so the user's normal Chrome (with
-    their default profile) is NEVER touched. No-op if nothing matches.
-    """
-    pattern = f"user-data-dir={BROWSER_PROFILE_DIR}"
-    subprocess.run(
-        ["pkill", "-f", pattern],
-        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=False,
-    )
 
 
 def run_one(
@@ -53,21 +39,17 @@ def run_one(
     exec_dir = EXECUTIONS_DIR / f"exec_{entry.id}__{entry.variant}_{ts}"
     exec_dir.mkdir(parents=True, exist_ok=True)
 
-    # A Chrome from the previous worker run may still be alive and locking
-    # our profile directory. Kill ONLY those — targeted by the exact
-    # --user-data-dir path, so the user's regular Chrome is untouched.
-    _kill_stale_profile_chrome()
+    # Start Chrome with remote debugging if it is not already running.
+    # If it IS running, this is a no-op — we just reuse it.
+    ensure_chrome_running()
 
     # Pass the source sop file so any inline repairs write their __repair_N.txt
     # right next to the original — matches the __regen_N convention.
     sop_file_hint = SOPS_DIR / f"{entry.id}.txt"
 
-    # launch=True uses Playwright's launch_persistent_context with a dedicated
-    # profile at web/.browser_profile. This avoids the connect_over_cdp +
-    # Chrome 147 + --user-data-dir incompatibility (Browser.setDownloadBehavior
-    # is rejected with "Browser context management is not supported"). Chrome
-    # dies at the end of each worker run but cookies/Gmail login survive
-    # across runs because the profile directory is persistent on disk.
+    # connect=False in our local parlance is launch=False in run_agent —
+    # Playwright attaches to the existing detached Chrome via CDP and opens a
+    # NEW TAB. Chrome persists across runs (survives when the worker exits).
     exec_log = run_agent(
         sop_text=entry.sop_text,
         output_dir=exec_dir,
@@ -76,7 +58,7 @@ def run_one(
         max_steps=max_steps,
         delay=delay,
         auto_confirm=auto_confirm,
-        launch=True,           # Playwright owns Chrome; no CDP connect dance
+        launch=False,          # connect to detached Chrome; open new tab in it
         headless=False,
         sop_file=sop_file_hint if sop_file_hint.exists() else None,
     )
