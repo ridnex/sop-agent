@@ -1,5 +1,5 @@
 1. open https://portal.kaust.edu.sa/
-2. wait me untill i will log in(wait 10s)
+2. wait for me to log in
 3. go to the business apps
 4. click student self servicees
 5. click course regestration
