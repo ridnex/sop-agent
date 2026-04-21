@@ -12,11 +12,25 @@ from pathlib import Path
 
 from pynput import keyboard
 
+from sop.methods import _extract_step_text, replace_step, repair_step
 from web.execute.api_client import call_claude
 from web.execute.browser import BrowserController
-from web.execute.config import BROWSER_WIDTH, BROWSER_HEIGHT
-from web.execute.models import ExecutionLog, StepRecord
-from web.execute.prompts import build_system_prompt, SOP_COMPLETED_SENTINEL
+from web.execute.config import (
+    BROWSER_WIDTH,
+    BROWSER_HEIGHT,
+    MAX_ATTEMPTS_BEFORE_REPAIR,
+    MAX_REPAIRS_PER_RUN,
+    REPAIRED_SOPS_DIR,
+)
+from web.execute.models import ExecutionLog, StepRecord, RepairRecord
+from web.execute.prompts import (
+    build_system_prompt,
+    build_stuck_message,
+    build_post_repair_message,
+    parse_last_step_tag,
+    parse_step_repair,
+    SOP_COMPLETED_SENTINEL,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -77,6 +91,28 @@ def _serialize_response_content(response) -> list[dict]:
     return parts
 
 
+def _allocate_repair_path(sop_file: Path | None, fallback_name: str) -> Path:
+    """Find the next free <sop_id>__repair_N.txt path under REPAIRED_SOPS_DIR.
+
+    If sop_file is provided, repair file sits next to the original.
+    Otherwise it goes into REPAIRED_SOPS_DIR using fallback_name as the base id.
+    """
+    if sop_file is not None and sop_file.exists():
+        base_dir = sop_file.parent
+        base_id = sop_file.stem
+    else:
+        base_dir = REPAIRED_SOPS_DIR
+        base_id = fallback_name
+
+    base_dir.mkdir(parents=True, exist_ok=True)
+    n = 1
+    while True:
+        candidate = base_dir / f"{base_id}__repair_{n}.txt"
+        if not candidate.exists():
+            return candidate
+        n += 1
+
+
 def run_agent(
     sop_text: str,
     output_dir: Path,
@@ -88,6 +124,7 @@ def run_agent(
     headless: bool = False,
     launch: bool = False,
     model: str | None = None,
+    sop_file: Path | None = None,
 ) -> ExecutionLog:
     """Run the web SOP execution agent.
 
@@ -131,8 +168,13 @@ def run_agent(
     screenshots_dir = output_dir / "execution_screenshots"
     screenshots_dir.mkdir(parents=True, exist_ok=True)
 
-    log = ExecutionLog(sop_text=sop_text, intent=intent, start_url=start_url)
+    original_sop_text = sop_text  # preserve for later diff / save-as-repair
+    log = ExecutionLog(sop_text=original_sop_text, intent=intent, start_url=start_url)
     step_num = 0
+
+    # Step-tracking state for inline repair
+    current_sop_step: int | None = None
+    attempts_on_current_step = 0
 
     # Start ESC listener
     _stop_event.clear()
@@ -187,6 +229,121 @@ def run_agent(
                     if full_text.strip():
                         print(f"  Claude says: {full_text[:200]}")
                 break
+
+            # Parse STEP N: tag and update attempts counter
+            tagged_step = parse_last_step_tag(full_text)
+            if tagged_step is not None:
+                if tagged_step == current_sop_step:
+                    attempts_on_current_step += 1
+                else:
+                    current_sop_step = tagged_step
+                    attempts_on_current_step = 1
+
+            # Stuck check — trigger repair BEFORE executing the pending tool calls
+            if (
+                current_sop_step is not None
+                and attempts_on_current_step > MAX_ATTEMPTS_BEFORE_REPAIR
+            ):
+                if len(log.repairs) >= MAX_REPAIRS_PER_RUN:
+                    print(
+                        f"\nRepair cap ({MAX_REPAIRS_PER_RUN}) reached on SOP step "
+                        f"{current_sop_step}. Stopping."
+                    )
+                    log.stuck_on_step = current_sop_step
+                    # Discard the pending tool_use response (never executed)
+                    messages.pop()
+                    break
+
+                original_step_text = _extract_step_text(sop_text, current_sop_step)
+                last_screenshot = Path(log.steps[-1].screenshot_path) if (
+                    log.steps and log.steps[-1].screenshot_path
+                ) else None
+
+                print(
+                    f"\n[Repair] Stuck on SOP step {current_sop_step} after "
+                    f"{attempts_on_current_step - 1} attempts. Asking for replacement..."
+                )
+
+                # Drop the pending tool_use response — we won't execute it
+                messages.pop()
+
+                # Ask Claude for a STEP_REPAIR line
+                stuck_msg = build_stuck_message(
+                    current_sop_step, original_step_text, attempts_on_current_step - 1
+                )
+                messages.append({"role": "user", "content": stuck_msg})
+
+                try:
+                    repair_response = call_claude(
+                        messages=messages, system=system_prompt, model=model
+                    )
+                    repair_content = _serialize_response_content(repair_response)
+                    messages.append({"role": "assistant", "content": repair_content})
+                    repair_text = " ".join(
+                        b.text for b in repair_response.content if b.type == "text"
+                    )
+                    parsed = parse_step_repair(repair_text)
+                except Exception as e:
+                    logger.warning(f"Claude repair call failed: {e}")
+                    parsed = None
+
+                new_step_text: str | None = None
+                if parsed is not None:
+                    _, new_step_text = parsed
+
+                # Fallback to GPT-4o if Claude didn't produce a usable STEP_REPAIR
+                if not new_step_text:
+                    try:
+                        failure_reason = (
+                            f"Claude made {attempts_on_current_step - 1} attempts on this "
+                            f"step without visible progress."
+                        )
+                        new_step_text = repair_step(
+                            sop_text=sop_text,
+                            failed_step=current_sop_step,
+                            failure_reason=failure_reason,
+                            screenshot_path=last_screenshot,
+                        )
+                    except Exception as e:
+                        logger.warning(f"GPT-4o repair fallback failed: {e}")
+                        log.stuck_on_step = current_sop_step
+                        break
+
+                # Apply the repair in memory
+                try:
+                    patched_sop = replace_step(sop_text, current_sop_step, new_step_text)
+                except ValueError as e:
+                    logger.warning(f"Could not apply repair: {e}")
+                    log.stuck_on_step = current_sop_step
+                    break
+
+                log.repairs.append(RepairRecord(
+                    step_number=current_sop_step,
+                    original_text=original_step_text,
+                    new_text=new_step_text,
+                    failure_screenshot_path=str(last_screenshot or ""),
+                    attempt_count=attempts_on_current_step - 1,
+                    at_execution_step=step_num,
+                ))
+
+                sop_text = patched_sop
+                system_prompt = build_system_prompt(
+                    sop_text, BROWSER_WIDTH, BROWSER_HEIGHT
+                )
+                messages.append({
+                    "role": "user",
+                    "content": build_post_repair_message(
+                        current_sop_step, new_step_text, sop_text
+                    ),
+                })
+
+                print(
+                    f"[Repair {len(log.repairs)}] Step {current_sop_step} rewritten: "
+                    f"{new_step_text[:100]}"
+                )
+
+                attempts_on_current_step = 0
+                continue
 
             # Execute each tool_use block
             tool_results = []
@@ -252,6 +409,20 @@ def run_agent(
         # Clean up
         esc_listener.stop()
         browser.stop()
+
+    # Save repaired SOP if any repairs happened
+    if log.repairs:
+        log.effective_sop_text = sop_text
+        try:
+            repair_path = _allocate_repair_path(
+                sop_file,
+                fallback_name=output_dir.name.replace("exec_", "").rsplit("_", 5)[0] or "sop",
+            )
+            repair_path.write_text(sop_text, encoding="utf-8")
+            log.repaired_sop_path = str(repair_path)
+            print(f"Repaired SOP saved to: {repair_path}")
+        except Exception as e:
+            logger.warning(f"Failed to save repaired SOP: {e}")
 
     # Save log
     log_path = output_dir / "execution_log.json"

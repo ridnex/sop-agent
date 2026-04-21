@@ -20,6 +20,17 @@ class StepRecord:
 
 
 @dataclass
+class RepairRecord:
+    """One inline SOP-step rewrite performed during a run."""
+    step_number: int
+    original_text: str
+    new_text: str
+    failure_screenshot_path: str
+    attempt_count: int
+    at_execution_step: int  # which ExecutionLog.step triggered the repair
+
+
+@dataclass
 class ExecutionLog:
     """Full web execution run."""
     sop_text: str
@@ -28,6 +39,9 @@ class ExecutionLog:
     steps: list[StepRecord] = field(default_factory=list)
     completed_successfully: bool = False
     stuck_on_step: Optional[int] = None
+    repairs: list[RepairRecord] = field(default_factory=list)
+    repaired_sop_path: Optional[str] = None
+    effective_sop_text: Optional[str] = None  # sop_text with all repairs applied
 
     def save(self, path: Path) -> None:
         """Save execution log as JSON."""

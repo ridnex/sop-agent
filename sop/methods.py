@@ -4,7 +4,7 @@ from pathlib import Path
 from sop.api_client import call_openai
 from sop.data_loader import Experiment, encode_screenshot_base64
 from sop.action_formatter import format_action_dsl
-from sop.prompts import prompt__td, prompt__td_kf, prompt__td_kf_act_intro, prompt__td_kf_act_close, prompt__fix_sop
+from sop.prompts import prompt__td, prompt__td_kf, prompt__td_kf_act_intro, prompt__td_kf_act_close, prompt__fix_sop, prompt__repair_step
 
 
 def build_messages_wd(exp: Experiment) -> list[dict]:
@@ -83,6 +83,71 @@ def _extract_step_text(sop_text: str, step_number: int) -> str:
     pattern = rf"^{step_number}\.\s+(.+?)(?=\n\d+\.|\Z)"
     match = re.search(pattern, sop_text, re.MULTILINE | re.DOTALL)
     return match.group(0).strip() if match else f"(step {step_number} text not found)"
+
+
+def _strip_step_number_prefix(text: str, step_number: int) -> str:
+    """Strip a leading 'N.' prefix if present — the model sometimes ignores instructions."""
+    text = text.strip()
+    pattern = rf"^{step_number}\.\s+"
+    return re.sub(pattern, "", text, count=1).strip()
+
+
+def replace_step(sop_text: str, step_number: int, new_step_text: str) -> str:
+    """Replace step N's body with new_step_text, leaving numbering and other steps intact.
+
+    Returns the patched SOP text.
+    """
+    new_body = _strip_step_number_prefix(new_step_text, step_number)
+    pattern = rf"(^{step_number}\.\s+)(.+?)(?=\n\d+\.|\Z)"
+
+    def _sub(match: re.Match) -> str:
+        return f"{match.group(1)}{new_body}"
+
+    patched, n = re.subn(pattern, _sub, sop_text, count=1, flags=re.MULTILINE | re.DOTALL)
+    if n == 0:
+        raise ValueError(f"Could not locate step {step_number} to replace in SOP")
+    return patched
+
+
+def repair_step(
+    old_sop: str,
+    failed_step: int,
+    failure_reason: str,
+    screenshot_path: Path | None = None,
+) -> str:
+    """Ask the model to rewrite ONLY the given step.
+
+    Returns the replacement body for step `failed_step` (no leading "N." prefix).
+    Raises RuntimeError if the model returns empty text.
+    """
+    failed_step_text = _extract_step_text(old_sop, failed_step)
+
+    prompt_text = prompt__repair_step(
+        old_sop=old_sop,
+        failed_step=failed_step,
+        failed_step_text=failed_step_text,
+        failure_reason=failure_reason,
+    )
+
+    content = [{"type": "text", "text": prompt_text}]
+
+    if screenshot_path and screenshot_path.exists():
+        b64 = encode_screenshot_base64(screenshot_path)
+        content.append({"type": "text", "text": "\n## Screenshot at the stuck step\n"})
+        content.append({
+            "type": "image_url",
+            "image_url": {
+                "url": f"data:image/png;base64,{b64}",
+                "detail": "high",
+            },
+        })
+
+    messages = [{"role": "user", "content": content}]
+    raw = call_openai(messages).strip()
+    if not raw:
+        raise RuntimeError("repair_step: model returned empty text")
+
+    return _strip_step_number_prefix(raw, failed_step)
 
 
 def regenerate_sop(

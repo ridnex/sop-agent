@@ -221,6 +221,38 @@ IMPORTANT: Describe each UI element by its visual label, name, or role (e.g. "th
 Please write the complete rewritten SOP below (including the unchanged early steps):"""
 
 
+prompt__repair_step: str = lambda old_sop, failed_step, failed_step_text, failure_reason: f"""# Task
+An AI agent is CURRENTLY executing this SOP and got stuck at step {failed_step} after 3 attempts. Execution is paused. Your job is to rewrite ONLY step {failed_step} so the agent can resume from there.
+
+# Full SOP (for context — do NOT rewrite other steps)
+
+```
+{old_sop}
+```
+
+# Stuck step
+
+Step {failed_step}: "{failed_step_text}"
+
+Failure reason: {failure_reason}
+
+# Instructions
+
+Return ONLY the new text for step {failed_step} — nothing else.
+
+- Do NOT include a leading step number (no "{failed_step}." prefix).
+- Do NOT include markdown, quotes, code fences, or any prose explanation.
+- Do NOT rewrite or reference other steps.
+- Output a single line (or short paragraph if absolutely necessary).
+
+Tips for the rewrite:
+- If the element wasn't found, describe it more precisely using exact label text or visible surrounding context from the screenshot.
+- If the SOP's assumption about the screen state was wrong, rewrite the step to match what the screenshot actually shows.
+- Describe elements by label, name, or role — never pixel coordinates.
+
+Your new text for step {failed_step}:"""
+
+
 ############################################
 #
 # Generalize

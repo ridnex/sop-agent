@@ -124,6 +124,7 @@ def main():
         headless=args.headless,
         launch=args.launch,
         model=args.model,
+        sop_file=args.sop_file,
     )
 
     sys.exit(0 if log.completed_successfully else 1)

@@ -33,3 +33,8 @@ ACTION_DELAY = 2.0  # seconds after each action for page settling
 # Retry / rate-limit
 RETRY_COUNT = 3
 RETRY_DELAYS = [5, 10, 20]  # exponential backoff seconds
+
+# Inline step repair
+MAX_ATTEMPTS_BEFORE_REPAIR = 3  # consecutive attempts on the same step before rewriting it
+MAX_REPAIRS_PER_RUN = 10        # safety cap — stop the run if exceeded
+REPAIRED_SOPS_DIR = BASE_DIR / "outputs" / "rl_data" / "sops"

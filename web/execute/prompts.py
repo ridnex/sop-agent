@@ -1,5 +1,8 @@
 """System prompt for SOP-driven browser execution with Claude Computer Use."""
 
+import re
+
+
 SYSTEM_PROMPT_TEMPLATE = """\
 You are a browser automation agent. You control a Chrome browser tab through the computer tool.
 
@@ -11,6 +14,34 @@ Do NOT try to open a browser, find a taskbar, or look for desktop icons — you 
 ## SOP to Execute
 
 {sop_text}
+
+## Step Tagging — REQUIRED
+
+The SOP above has numbered steps. Before EVERY tool call, you MUST emit a text block with \
+exactly this format (one line, nothing else on that line):
+
+    STEP N:
+
+where N is the SOP step number you are currently working on. Example: `STEP 3:`. \
+You may add rationale on following lines, but the `STEP N:` line must come first. If a step \
+has been rewritten mid-run (see Repair Protocol below), emit `STEP N (repaired):` instead.
+
+This tag is how the system tracks your progress. Do not skip it, do not merge multiple steps \
+into one tag, and do not advance the number until the previous step is actually complete.
+
+## Repair Protocol
+
+If the system detects you are stuck on step N (too many attempts with no progress) it will \
+send you a user message beginning with `STUCK on step N — propose a replacement.` When you \
+see that message you MUST respond with ONLY one text block in this exact form:
+
+    STEP_REPAIR N: <one-line replacement instruction for step N>
+
+No tool calls, no screenshot, no prose — just that single line. The system will execute the \
+replacement and let you continue.
+
+After the repair is applied, the system will send you the updated SOP and you resume with \
+`STEP N (repaired):` tagging.
 
 ## How to Navigate to a URL
 
@@ -75,4 +106,53 @@ def build_system_prompt(sop_text: str, width: int, height: int) -> str:
         sop_text=sop_text,
         width=width,
         height=height,
+    )
+
+
+_STEP_TAG_RE = re.compile(r"^\s*STEP\s+(\d+)\s*(?:\(repaired\))?\s*:", re.MULTILINE)
+_REPAIR_TAG_RE = re.compile(r"^\s*STEP_REPAIR\s+(\d+)\s*:\s*(.+?)\s*$", re.MULTILINE | re.DOTALL)
+
+
+def parse_last_step_tag(text: str) -> int | None:
+    """Return the last SOP step number Claude tagged in its response, or None."""
+    matches = _STEP_TAG_RE.findall(text or "")
+    if not matches:
+        return None
+    try:
+        return int(matches[-1])
+    except ValueError:
+        return None
+
+
+def parse_step_repair(text: str) -> tuple[int, str] | None:
+    """Parse a STEP_REPAIR block. Returns (step_number, replacement_text) or None."""
+    match = _REPAIR_TAG_RE.search(text or "")
+    if not match:
+        return None
+    try:
+        return int(match.group(1)), match.group(2).strip()
+    except (ValueError, IndexError):
+        return None
+
+
+def build_stuck_message(step_number: int, step_text: str, attempt_count: int) -> str:
+    """Build the user message that asks Claude to propose a repair."""
+    return (
+        f"STUCK on step {step_number} — propose a replacement.\n\n"
+        f"You have attempted step {step_number} ({step_text!r}) {attempt_count} times "
+        f"without visible progress. The instruction is likely wrong for the current UI.\n\n"
+        f"Respond with ONLY one line in the exact form:\n"
+        f"    STEP_REPAIR {step_number}: <new one-line instruction for step {step_number}>\n\n"
+        f"No tool calls. No screenshot. No prose. Just that single line."
+    )
+
+
+def build_post_repair_message(step_number: int, new_step_text: str, new_sop_text: str) -> str:
+    """Build the user message sent after a repair is applied."""
+    return (
+        f"Step {step_number} has been repaired. New text:\n"
+        f"    {step_number}. {new_step_text}\n\n"
+        f"The full updated SOP is:\n\n{new_sop_text}\n\n"
+        f"Continue execution from step {step_number}. Tag it as "
+        f"`STEP {step_number} (repaired):` before your next tool call."
     )
