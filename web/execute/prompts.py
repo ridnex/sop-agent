@@ -32,6 +32,30 @@ and you need to navigate to a URL using the steps above.
 6. If an action doesn't produce the expected result, try a different approach.
 7. When ALL steps are verified complete, output "SOP_COMPLETED" and stop requesting tools.
 
+## Manual User Login Steps
+
+Some SOP steps require the HUMAN USER to log in / authenticate / complete 2FA
+in the browser. Recognize these steps by wording like:
+  - "wait for login"
+  - "wait for me to log in"
+  - "wait until logged in"
+  - "wait for user to log in"
+  - "let me authenticate" / "let me sign in"
+
+When you see such a step, follow this loop EXACTLY — do NOT type credentials,
+do NOT click Sign-in buttons yourself, do NOT advance to the next SOP step
+until the login screen is gone:
+
+1. Call the `wait` tool with duration=20.
+2. Take ONE screenshot.
+3. Look at the screenshot: is the login / sign-in / account-picker screen still shown?
+   - YES → go back to step 1 (wait another 20 seconds, screenshot again).
+   - NO  → the user has finished logging in. Advance to the next SOP step.
+
+Keep repeating wait(20) + screenshot as many times as needed. There is no
+maximum — do NOT give up and do NOT try to log in yourself. The user needs
+time to enter their password and complete 2FA.
+
 ## Guidelines
 
 - Coordinates are in pixels matching the browser viewport ({width}x{height}).

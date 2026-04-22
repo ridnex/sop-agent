@@ -367,7 +367,8 @@ class BrowserController:
 
             elif action == "wait":
                 duration = action_input.get("duration", 1)
-                time.sleep(min(duration, 10))
+                # Cap at 60s so wait(20) in the manual-login loop sleeps the full 20.
+                time.sleep(min(duration, 60))
                 return {"output": None, "error": None, "base64_image": self.screenshot()}
 
             elif action == "cursor_position":
