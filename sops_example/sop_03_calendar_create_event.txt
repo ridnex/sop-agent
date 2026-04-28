@@ -1,0 +1,11 @@
+1. Navigate to calendar.google.com
+2. wait for me to log in
+3. Click the "Create" button in the top-left of the calendar interface.
+4. In the dropdown menu that appears, click the "Event" option.
+5. In the event title field (at the top of the event creation panel), type "SOP Test Event".
+6. Confirm that the date is set to tomorrow. If it is not, click the start date field and pick tomorrow from the date picker.
+7. Click the start time field and set the time to 10:00 AM.
+8. Click the end time field and set the time to 10:30 AM.
+9. Click the "Save" button at the top-right of the event creation panel.
+10. If a dialog appears asking whether to send invitations, click "Don't send" or close the dialog.
+11. Verify that the new "SOP Test Event" block now appears on tomorrow's date in the calendar grid at 10:00 AM.

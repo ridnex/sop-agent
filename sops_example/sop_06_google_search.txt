@@ -1,0 +1,8 @@
+1. Navigate to google.com
+2. If a consent or cookie banner appears, dismiss it by clicking "Accept all" or the equivalent accept button.
+3. Click on the main search input field in the center of the page.
+4. Type "hazyresearch eclair agents".
+5. Press the Enter key to submit the search.
+6. Wait for the search results page to load.
+7. Click on the first organic result title (skip any results labeled "Sponsored" or "Ad").
+8. Verify that the browser navigates to the linked page and its content is visible.

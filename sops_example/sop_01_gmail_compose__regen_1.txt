@@ -1,0 +1,11 @@
+```
+1. Open a web browser and navigate to https://gmail.com in the address bar, then press Enter and wait up to 15 seconds for the page to fully load
+2. Wait for me to log in
+3. Click the "Compose" button in the top-left of the Gmail interface.
+4. In the "To" field of the compose window, type "yeskendir.zharkynbek@gmail.com".
+5. In the "Subject" field, type "SOP Test Email".
+6. Click inside the message body area below the subject field.
+7. Type "Hello, this is a test email sent as part of an SOP execution run."
+8. Click the "Send" button at the bottom-left of the compose window.
+9. Verify that the compose window closes and a confirmation message such as "Message sent" briefly appears.
+```

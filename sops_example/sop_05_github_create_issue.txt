@@ -1,0 +1,8 @@
+1. Navigate to github.com/ridnex/sop-agent/issues
+2. wait for me to log in
+3. Click the green "New issue" button on the right side of the issues page.
+4. In the "Title" field at the top of the form, type "SOP Test Issue".
+5. Click inside the "Add a description" text area below the title field.
+6. Type "This issue was opened as part of an SOP test run."
+7. Click the green "Submit new issue" button at the bottom of the form.
+8. Verify that the page navigates to the newly created issue and shows the issue title "SOP Test Issue" at the top.

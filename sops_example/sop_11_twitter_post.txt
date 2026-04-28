@@ -1,0 +1,6 @@
+1. Navigate to x.com
+2. wait for me to log in
+3. Click the "Post" button in the left sidebar (it is the large button below the navigation items).
+4. In the post composer text area that appears, type "Testing an SOP-driven browser agent. #automation".
+5. Click the "Post" button in the bottom-right of the composer to publish the tweet.
+6. Verify that the composer closes and the new post appears at the top of the home timeline or in a confirmation toast.

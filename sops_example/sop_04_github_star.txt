@@ -1,0 +1,5 @@
+1. Navigate to github.com/anthropics/claude-code
+2. wait for me to log in
+3. Look at the top-right area of the repository header, where the "Watch", "Fork", and "Star" buttons are located.
+4. Click the "Star" button.
+5. Verify that the button label changes to "Starred" and the star count increases by one.

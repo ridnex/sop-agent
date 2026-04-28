@@ -88,6 +88,7 @@ def run_agent(
     headless: bool = False,
     launch: bool = False,
     model: str | None = None,
+    platform_name: str | None = None,
 ) -> ExecutionLog:
     """Run the web SOP execution agent.
 
@@ -143,7 +144,7 @@ def run_agent(
     browser.start(start_url=start_url)
 
     # Build system prompt and initial message
-    system_prompt = build_system_prompt(sop_text, BROWSER_WIDTH, BROWSER_HEIGHT)
+    system_prompt = build_system_prompt(sop_text, BROWSER_WIDTH, BROWSER_HEIGHT, platform_name=platform_name)
     initial_message = "Please begin executing the SOP. Start by taking a screenshot to see the current browser state."
     if intent:
         initial_message += f"\n\nGoal: {intent}"

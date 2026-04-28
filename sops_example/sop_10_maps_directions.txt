@@ -1,0 +1,8 @@
+1. Navigate to maps.google.com
+2. If a consent or cookie banner appears, dismiss it by clicking "Accept all" or the equivalent.
+3. Click the "Directions" button (it shows a diamond-shaped arrow icon) next to the main search box in the top-left panel.
+4. In the starting-location field (top field of the directions panel), type "KAUST" and then click the matching "King Abdullah University of Science and Technology" suggestion from the dropdown.
+5. In the destination field (bottom field of the directions panel), type "King Abdulaziz International Airport Jeddah" and then click the matching suggestion from the dropdown.
+6. Click the car icon in the top of the directions panel to select driving mode.
+7. Wait for the route to be drawn on the map and the estimated travel time to appear.
+8. Verify that a driving route is shown on the map and a time estimate (for example "1 h 15 min") is visible in the results panel.

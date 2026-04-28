@@ -1,0 +1,7 @@
+1. Navigate to en.wikipedia.org
+2. Click the search input field at the top-right of the Wikipedia header.
+3. Type "Transformer (machine learning model)".
+4. From the autocomplete suggestions dropdown, click the suggestion that matches "Transformer (deep learning architecture)" or "Transformer (machine learning model)".
+5. Wait for the article page to load fully.
+6. In the article's table of contents on the left side, click the link labeled "History".
+7. Verify that the page scrolls to the "History" section and its heading is now near the top of the viewport.

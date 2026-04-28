@@ -1,0 +1,8 @@
+1. Navigate to youtube.com
+2. If a "Before you continue" consent dialog appears, click "Accept all".
+3. Click the search input field at the top of the YouTube header.
+4. Type "lex fridman podcast".
+5. Press the Enter key to submit the search.
+6. Wait for the search results page to load.
+7. Click the thumbnail of the first video result (skip any entries labeled as channels, shorts, or ads).
+8. Verify that the video player opens and the video begins playing. If it does not auto-play, click the play button in the center of the video player.

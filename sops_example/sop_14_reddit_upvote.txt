@@ -1,0 +1,8 @@
+1. Navigate to reddit.com/r/MachineLearning
+2. wait for me to log in
+3. Near the top of the feed, click the sort dropdown (currently showing "Hot", "New", or similar) and select "Top".
+4. If a secondary "Today, This Week, ..." time-range dropdown appears, click it and select "Today".
+5. Wait for the feed to reload with the top posts of the day.
+6. Locate the first post at the top of the list.
+7. Click the up-arrow (upvote) button on the left side of that post.
+8. Verify that the upvote button turns orange/red (indicating it is now active) and the score count increases by 1.

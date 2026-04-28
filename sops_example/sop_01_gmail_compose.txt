@@ -1,0 +1,6 @@
+1. Navigate to gmail.com
+2. Click the "Compose" button
+3. In the "To" field, type "yeskendir.zharkynbek@gmail.com"
+4. In the "Subject" field, type "Test from Claude"
+5. In the message body, type "Hello! This is an automated test email sent by Claude."
+6. Click the "Send" button

@@ -1,0 +1,11 @@
+1. Navigate to amazon.com
+2. If a location or delivery-preference banner appears, dismiss it by clicking the close button or "Continue".
+3. Click the main search input field at the top of the page.
+4. Type "wireless mouse".
+5. Press the Enter key to submit the search.
+6. Wait for the search results grid to load.
+7. Click on the title of the first search result that is NOT labeled "Sponsored".
+8. Wait for the product detail page to fully load.
+9. Click the yellow "Add to Cart" button on the right side of the product page.
+10. Wait for the "Added to Cart" confirmation page or side panel to appear.
+11. Verify that the cart icon in the top-right shows an item count of at least 1. Do NOT proceed to checkout.

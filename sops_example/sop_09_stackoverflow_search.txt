@@ -1,0 +1,8 @@
+1. Navigate to stackoverflow.com
+2. If a cookie or consent banner appears, dismiss it by clicking "Accept all cookies" or the equivalent.
+3. Click the search input field in the top navigation bar (placeholder text reads "Search...").
+4. Type "python list comprehension".
+5. Press the Enter key to submit the search.
+6. Wait for the search results page to load.
+7. Click the title of the first question result in the list.
+8. Verify that the question page opens and displays the question title, body, and at least one answer.

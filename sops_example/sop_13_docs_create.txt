@@ -1,0 +1,10 @@
+1. Navigate to docs.google.com
+2. wait for me to log in
+3. In the "Start a new document" section, click the "Blank" template (the tile with a plus icon labeled "Blank").
+4. Wait for the new untitled document to open in the editor.
+5. Click the document title field at the top-left (initial text reads "Untitled document").
+6. Clear the existing text and type "SOP Test Doc".
+7. Press the Enter key to save the title.
+8. Click inside the main document body area.
+9. Type "This document was created as part of an SOP test run. It should contain exactly one paragraph of text."
+10. Wait a few seconds for the auto-save indicator near the top menu to show "All changes saved in Drive" or a similar saved-state message.

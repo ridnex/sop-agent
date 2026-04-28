@@ -81,6 +81,12 @@ def main():
         default=None,
         help="Custom output directory (default: outputs/web_executions/exec_<name>_<ts>/).",
     )
+    parser.add_argument(
+        "--platform",
+        default=None,
+        choices=[None, "darwin", "windows", "linux"],
+        help="Host OS for keyboard-shortcut guidance (default: auto-detect).",
+    )
 
     args = parser.parse_args()
 
@@ -124,6 +130,7 @@ def main():
         headless=args.headless,
         launch=args.launch,
         model=args.model,
+        platform_name=args.platform,
     )
 
     sys.exit(0 if log.completed_successfully else 1)

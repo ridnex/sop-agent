@@ -1,0 +1,10 @@
+1. Navigate to linkedin.com
+2. wait for me to log in
+3. Click the search input field at the top of the header (placeholder text reads "Search").
+4. Type "Anthropic".
+5. Press the Enter key to submit the search.
+6. On the results page, click the "Companies" filter tab near the top of the results.
+7. In the filtered results, click the "Anthropic" company result (identifiable by the Anthropic logo and the "Research and Safety" or similar subtitle).
+8. Wait for the company page to load fully.
+9. Click the "Follow" button near the top of the company page, below the banner image.
+10. Verify that the button label changes to "Following" or displays a checkmark, and the follower count increases.

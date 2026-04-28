@@ -1,0 +1,6 @@
+1. Navigate to gmail.com
+2. wait for me to log in
+3. Confirm that the left sidebar shows the "Inbox" label is currently selected. If not, click the "Inbox" label in the sidebar.
+4. In the main message list, identify the first email whose row is displayed in bold (bold indicates unread).
+5. Click on that bold email row to open it.
+6. Verify that the email body is now shown in the main reading pane, with the sender, subject, and message content visible.
