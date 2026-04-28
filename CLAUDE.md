@@ -89,6 +89,24 @@ Coordinate-based actions (CLICK(x,y), TYPE('text'), etc.). Works with any applic
 
 Sends final screenshot + task description + execution history to GPT-4o. Returns `{"thinking": "...", "was_completed": true/false}`.
 
+### Group RL (`group_RL/`)
+
+Foundation for an inference-time, gradient-free pipeline that generates G candidate SOPs per intent, ranks them by group consensus, executes the winner, and writes validated SOPs back to a growing memory. No fine-tuning, no GPU.
+
+Currently shipped: `group_RL/embedding.py` — the shared text-embedding primitive used by every downstream component (intent retrieval, group-consensus ranking, etc.).
+
+- Local model: `BAAI/bge-small-en-v1.5` (384-dim, ~140 MB, CPU-only).
+- Lazy-loaded module-level singleton; one `pip install sentence-transformers`.
+- L2-normalized output → cosine similarity reduces to a dot product.
+- Public API: `get_embedder()`, `embed_text(str)`, `embed_texts(list[str])`, `cosine_similarity(a, b)`.
+
+Smoke test (downloads weights to `~/.cache/huggingface/` on first run):
+```bash
+python -m group_RL.test_embedding
+```
+
+Downstream components (memory store, group-consensus ranker, retrieval-then-adapt, full pipeline) are not built yet and are tracked in the plan file.
+
 ### Element Detection (`yolo/`, `dino/`)
 
 UI element detection with two backends (selectable via `--detector`):

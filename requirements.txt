@@ -25,3 +25,6 @@ huggingface_hub
 transformers>=4.36.0
 torch>=2.0.0
 torchvision>=0.15.0
+
+# group_RL embedding (retrieval + group-consensus ranking)
+sentence-transformers>=2.2.0
