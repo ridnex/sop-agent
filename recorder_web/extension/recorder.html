@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>SOP Web Recorder</title>
+    <link rel="stylesheet" href="recorder.css" />
+  </head>
+  <body>
+    <h1>SOP Web Recorder</h1>
+
+    <div id="idle-view">
+      <label for="task-name">Task name</label>
+      <input
+        id="task-name"
+        type="text"
+        placeholder="e.g. create_lead_in_salesforce"
+        autocomplete="off"
+      />
+      <button id="start-btn" class="primary">Start recording</button>
+      <p class="hint">
+        You'll be asked to pick a screen, window, or tab. Press
+        <strong>Stop</strong> when finished — three files will be saved to your
+        Downloads folder. Keep this window open while recording.
+      </p>
+    </div>
+
+    <div id="recording-view" hidden>
+      <div class="status-row">
+        <span class="dot"></span>
+        <span id="status-task">Recording…</span>
+      </div>
+      <div class="metrics">
+        <div><span id="duration">0:00</span><small>elapsed</small></div>
+        <div><span id="event-count">0</span><small>events</small></div>
+      </div>
+      <button id="stop-btn" class="danger">Stop recording</button>
+    </div>
+
+    <div id="error-view" hidden>
+      <div class="error-msg" id="error-msg"></div>
+      <button id="dismiss-btn">Dismiss</button>
+    </div>
+
+    <script src="recorder.js"></script>
+  </body>
+</html>

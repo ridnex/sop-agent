@@ -1,0 +1,11 @@
+# Python deps for the recorder_web import CLI.
+# The Chrome extension itself has zero Python dependencies — these are only
+# needed to convert the recorded bundle into the existing pipeline's format.
+
+moviepy>=2.0.0
+numpy>=1.24.0
+Pillow>=10.0.0
+
+# System dep (must be on PATH, not installed via pip):
+#   ffmpeg   — used to convert recording.webm → recording.mp4
+#              install: `brew install ffmpeg` (macOS) or `apt install ffmpeg`

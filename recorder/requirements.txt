@@ -1,0 +1,16 @@
+# Recorder-only dependencies.
+# This module is part of the larger SOP project but is designed to be
+# extractable as a standalone tool — install only these to run `python -m recorder.record`.
+
+# Input listeners (mouse + keyboard, system-wide)
+pynput>=1.7.6
+
+# macOS Accessibility / window / display APIs
+pyobjc-framework-ApplicationServices>=10.0
+pyobjc-framework-Cocoa>=10.0
+pyobjc-framework-Quartz>=10.0
+
+# Video frame extraction (post-recording, to pull keyframes from the .mp4)
+moviepy>=2.0.0
+numpy>=1.24.0
+Pillow>=10.0.0
